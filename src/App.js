@@ -3,6 +3,7 @@ import axios from 'axios';
 import LandingPage from './components/LandingPage';
 import './App.css';
 import NewBaby from './components/NewBaby';
+import Index from './components/Index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
@@ -45,8 +46,10 @@ class App extends React.Component {
         <div className='container'>
           <Route path='/' exact component={LandingPage}/>
           {/* <Route path='/babies' component={ComparisonPage}/> */}
-          {/* <Router path='/babies/all' component={ShowAllPage}/> */}
-          <Router path='/babies/new' component={NewBaby}/>
+          <Route path='/babies/all' render={() => 
+            <Index babies={this.state.babies}/>
+          }/>
+          <Route path='/babies/new' component={NewBaby}/>
         </div>
       </Router>
     );
