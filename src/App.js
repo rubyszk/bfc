@@ -69,6 +69,10 @@ class App extends React.Component {
             path='/babies/new'
             render={() => <NewBaby addBaby={this.addBaby} baseURL={baseURL} />}
           />
+          <Route
+            path='/babies/all'
+            render={() => <Index babies={this.state.babies}/>} 
+          />
         </div>
       </Router>
     );
