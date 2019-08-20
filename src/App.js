@@ -47,6 +47,7 @@ class App extends React.Component {
           <Route path='/' exact component={LandingPage} />
           {/* <Route path='/babies' component={ComparisonPage}/> */}
           {/* <Route path='/babies/all' component={ShowAllPage}/> */}
+          <Route path='/babies/show' render={() => {}} />
           <Route path='/babies/new' component={NewBaby} />
         </div>
       </Router>
