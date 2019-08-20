@@ -7,7 +7,9 @@ class Index extends React.Component {
     render() {
         return (
             <div className="index">
-                    <h3>{this.props.babies[0].name}</h3>
+                {this.props.babies.map((baby) => {
+                    return <img src={baby.image}></img>
+                })}
             </div>
         )
     }

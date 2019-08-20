@@ -38,6 +38,7 @@ class App extends React.Component {
     this.setState({
       babies: data
     });
+    console.log(this.state.babies)
   }
 
   render() {
@@ -49,7 +50,9 @@ class App extends React.Component {
           <Route path='/babies/all' render={() => 
             <Index babies={this.state.babies}/>
           }/>
-          <Route path='/babies/new' component={NewBaby}/>
+          <Route path='/babies/new' render={() => 
+            <NewBaby addBaby={this.addBaby} baseURL={baseURL}/>
+          }/>
         </div>
       </Router>
     );
