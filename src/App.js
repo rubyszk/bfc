@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import LandingPage from './components/LandingPage';
+import ComparisonPage from './components/ComparisonPage.js'
 import './App.css';
 import NewBaby from './components/NewBaby';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -45,8 +46,9 @@ class App extends React.Component {
       <Router>
         <div className='container'>
           <Route path='/' exact component={LandingPage}/>
-          {/* <Route path='/babies' component={ComparisonPage}/> */}
-          {/* <Route path='/babies/all' component={ShowAllPage}/> */}
+
+          <Route path='/babies' component={ComparisonPage}/>
+          {/* <Router path='/babies/all' component={ShowAllPage}/> */}
           <Route path='/babies/new' render={() => 
             <NewBaby addBaby={this.addBaby} baseURL={baseURL}/>
           }/>
