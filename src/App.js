@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import LandingPage from './components/LandingPage';
+import Show from './components/Show';
 import './App.css';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
@@ -31,6 +32,7 @@ class App extends React.Component {
     return (
       <div className='container'>
         <h1>Filler</h1>
+
         <LandingPage />
       </div>
     );
