@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import LandingPage from './components/LandingPage';
 import './App.css';
-import LandingPage from './components/LandingPage.js';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
 
