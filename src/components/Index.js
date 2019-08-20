@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 
-let baseURL = 'http://localhost:3003'
+let baseURL = 'https://bfc-backend-api.herokuapp.com/'
 
 class Index extends React.Component {
     constructor(props) {
@@ -9,7 +9,16 @@ class Index extends React.Component {
         this.state = {
 
         }
+    }
 
+    render() {
+        return (
+            <div className="index">
+                
+
+            </div>
+
+        )
     }
 }
 
