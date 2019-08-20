@@ -38,6 +38,7 @@ class App extends React.Component {
     this.setState({
       babies: data
     });
+    console.log(this.state.babies)
   }
 
   render() {
@@ -48,6 +49,11 @@ class App extends React.Component {
           <Route path='/babies' component={ComparisonPage}/>
           {/* <Router path='/babies/all' component={ShowAllPage}/> */}
           <Route path='/babies/new' component={NewBaby}/>
+          {/* <Route path='/babies' component={ComparisonPage}/> */}
+          {/* <Route path='/babies/all' component={ShowAllPage}/> */}
+          <Route path='/babies/new' render={() => 
+            <NewBaby addBaby={this.addBaby} baseURL={baseURL}/>
+          }/>
         </div>
       </Router>
     );
