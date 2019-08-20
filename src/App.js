@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import LandingPage from './components/LandingPage';
 import Show from './components/Show';
+import ComparisonPage from './components/ComparisonPage.js';
 import './App.css';
 import NewBaby from './components/NewBaby';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
