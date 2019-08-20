@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.landing  {
+  text-align: center;
+  font-size: 150%;
+}
+
+body  {
+  background-image: url('https://www.sickchirpse.com/wp-content/uploads/2016/10/baby-fight-club.jpg')
+
+}
