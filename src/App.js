@@ -45,7 +45,7 @@ class App extends React.Component {
         <h1>Filler</h1>
 
         <LandingPage />
-        <NewBaby addBaby={this.addBaby} baseURL={baseURL}/>
+        <NewBaby addBaby={this.addBaby} baseURL={baseURL} />
       </div>
     );
   }
