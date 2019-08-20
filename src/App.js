@@ -12,7 +12,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      babies: []
+      babies: [],
+      currentBaby: {}
     };
 
     this.getBabies = this.getBabies.bind(this);
@@ -30,6 +31,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getBabies();
+    this.getSpecificBaby();
   }
 
   async getBabies() {
@@ -38,6 +40,17 @@ class App extends React.Component {
     this.setState({
       babies: data
     });
+    console.log(this.state.babies);
+  }
+
+  async getSpecificBaby() {
+    const id = '5d5c49a7419c2d00174ae023';
+    const response = await axios(`${baseURL}/babies/${id}`);
+    const data = response.data;
+    this.setState({
+      currentBaby: data
+    });
+    console.log(this.state.currentBaby);
   }
 
   render() {
@@ -47,8 +60,14 @@ class App extends React.Component {
           <Route path='/' exact component={LandingPage} />
           {/* <Route path='/babies' component={ComparisonPage}/> */}
           {/* <Route path='/babies/all' component={ShowAllPage}/> */}
-          <Route path='/babies/show' render={() => {}} />
-          <Route path='/babies/new' component={NewBaby} />
+          <Route
+            path='/babies/show'
+            render={() => <Show babies={this.state.currentBaby} />}
+          />
+          <Route
+            path='/babies/new'
+            render={() => <NewBaby addBaby={this.addBaby} baseURL={baseURL} />}
+          />
         </div>
       </Router>
     );

@@ -6,7 +6,7 @@ class Show extends React.Component {
   render() {
     return (
       <div className='show'>
-        <img scr={this.props.babies.image} />
+        <img src={this.props.babies.image} />
         <h1>{this.props.babies.name}</h1>
         <h3>Age: {this.props.babies.age}</h3>
         <h3>Weight: {this.props.babies.weight}</h3>
