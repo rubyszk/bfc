@@ -20,7 +20,15 @@ class NewBaby extends React.Component {
     async handleSubmit(event) {
         event.preventDefault()
         const baseURL = this.props.baseURL;
-        const response = await axios.post(`${baseURL}/babies/new`, this.state);
+        const response = await axios.post(`${baseURL}/babies/new`, {
+            name: this.state.name,
+            age: this.state.age,
+            weight: this.state.weight,
+            about: this.state.about,
+            wins: this.state.wins,
+            losses: this.state.losses,
+            image: this.state.image
+        });
         this.setState = {
             name: '',
             age: 0,
