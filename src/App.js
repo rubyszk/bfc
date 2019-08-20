@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import Show from './components/Show';
 import './App.css';
 import NewBaby from './components/NewBaby';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
 
@@ -41,12 +42,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <h1>Filler</h1>
-
-        <LandingPage />
-        <NewBaby addBaby={this.addBaby} baseURL={baseURL} />
-      </div>
+      <Router>
+        <div className='container'>
+          <Route path='/' exact component={LandingPage} />
+          {/* <Route path='/babies' component={ComparisonPage}/> */}
+          {/* <Router path='/babies/all' component={ShowAllPage}/> */}
+          <Router path='/babies/new' component={NewBaby} />
+        </div>
+      </Router>
     );
   }
 }
