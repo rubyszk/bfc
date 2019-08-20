@@ -13,9 +13,9 @@ class Show extends React.Component {
         <h3>Wins: {this.props.babies.wins}</h3>
         <h3>Losses: {this.props.babies.losses}</h3>
         <h3>Bio: {this.props.babies.about}</h3>
-        <Link to='/babies/all' component={ShowAllPage}>
+        <a href='/babies/all' component={ShowAllPage}>
           Back
-        </Link>
+        </a>
       </div>
     );
   }
