@@ -8,6 +8,7 @@ function App() {
       <header className="App-header">
         <p>
           <LandingPage />
+          
         </p>
       </header>
     </div>
