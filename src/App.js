@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+
 import LandingPage from './components/LandingPage';
 import Show from './components/Show';
 import ComparisonPage from './components/ComparisonPage.js';
@@ -59,8 +61,19 @@ class App extends React.Component {
     return (
       <Router>
         <div className='container'>
+          <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar.Brand href="/babies">Baby Fight Club</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="/babies/duel">Baby Duel!</Nav.Link>
+                <Nav.Link href="/babies/all">Show All Baby Fighters</Nav.Link>
+                <Nav.Link href="/babies/new">Register A Baby Fighter</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+          
           <Route path='/' exact component={LandingPage} />
-          <Route path='/babies' component={ComparisonPage}/>
           <Route
             path='/babies/show'
             render={() => <Show babies={this.state.currentBaby} />}
@@ -71,7 +84,7 @@ class App extends React.Component {
           />
           <Route
             path='/babies/all'
-            render={() => <Index babies={this.state.babies}/>} 
+            render={() => <Index babies={this.state.babies} />}
           />
         </div>
       </Router>
