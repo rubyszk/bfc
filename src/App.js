@@ -40,8 +40,14 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getBabies();
-    // this.getSpecificBaby('5d5c49a7419c2d00174ae023');
     this.getTwoRandomBabies();
+    // this.deleteBaby();
+  }
+
+  async deleteBaby(){
+    const response = await axios.delete(`${baseURL}/babies/5d5ca9dbb7f31a0017c9360e`);
+    const data = response.data;
+    console.log(data);
   }
 
   async getBabies() {
@@ -67,8 +73,16 @@ class App extends React.Component {
     const firstResponse = await axios(`${baseURL}/babies/random`);
     const baby1 = firstResponse.data;
 
-    const secondResponse = await axios(`${baseURL}/babies/random`);
-    const baby2 = secondResponse.data;
+    let secondResponse = null;
+    let baby2 = {
+      _id: baby1._id
+    }
+    // make some conditions to make sure baby1 is not equal to baby2
+    while(baby2._id === baby1._id)
+    {
+      secondResponse = await axios(`${baseURL}/babies/random`);
+      baby2 = secondResponse.data;
+    }
 
     this.setState({
       duelBabies: {

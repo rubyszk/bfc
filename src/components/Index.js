@@ -1,11 +1,8 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 
 import NavigationBar from './NavigationBar';
-
-let baseURL = 'https://bfc-backend-api.herokuapp.com/'
-
 class Index extends React.Component {
     constructor(props){
         super(props);
@@ -35,11 +32,11 @@ class Index extends React.Component {
             <div>
             {this.renderRedirect()}
             <NavigationBar/>
-                <div className="container">
+                <div className="container jumbotron">
                     <div className="index row justify-content-center">
                         {this.props.babies.map((baby) => {
                             return (
-                            <div className="col-md-auto square-image-container" onClick={() => {this.goToShowPage(baby._id)}}>
+                            <div className="col-md-auto square-image-container" onClick={() => {this.goToShowPage(baby._id)}} key={baby._id}>
                                 <img src={baby.image} className="img-thumbnail"></img>
                             </div>
                             )

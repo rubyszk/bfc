@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import NavigationBar from './NavigationBar';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import {Redirect} from 'react-router-dom';
+
+
+import NavigationBar from './NavigationBar';
 
 class NewBaby extends React.Component {
     constructor(props) {
@@ -13,14 +16,18 @@ class NewBaby extends React.Component {
             about: '',
             wins: 0,
             losses: 0,
-            image: null
+            image: null,
+            toIndexPage: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     async handleSubmit(event) {
-        event.preventDefault()
+        event.preventDefault();
+        this.setState({
+                toIndexPage: true
+        })
         const baseURL = this.props.baseURL;
         const response = await axios.post(`${baseURL}/babies/new`, {
             name: this.state.name,
@@ -49,15 +56,23 @@ class NewBaby extends React.Component {
         });
     }
 
+
+    renderRedirect = () => {
+        if (this.state.toIndexPage) {
+            return <Redirect to='/babies/all' />
+        }
+    }
+
     render() {
         return (
             <div>
+            {this.renderRedirect()}
             <NavigationBar/>
             <div className="jumbotron container">
                 <h3>Add a New Baby</h3>
                 <Form onSubmit={this.handleSubmit}>
                     <hr />
-                    <Form.Group as={Row} controlId="formHorizontalName">
+                    <Form.Group as={Row}>
                         <Form.Label column sm={2}>
                             Name
                     </Form.Label>
@@ -66,7 +81,7 @@ class NewBaby extends React.Component {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalAge">
+                    <Form.Group as={Row}>
                         <Form.Label column sm={2}>
                             Age
                     </Form.Label>
@@ -116,7 +131,7 @@ class NewBaby extends React.Component {
                         </Form.Group>
                     </fieldset>
 
-                    <Form.Group as={Row} controlId="formHorizontalPassword">
+                    <Form.Group as={Row}>
                         <Form.Label column sm={2}>
                             Biography
                         </Form.Label>
@@ -125,7 +140,7 @@ class NewBaby extends React.Component {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalImage">
+                    <Form.Group as={Row}>
                         <Form.Label column sm={2}>
                             Image URL
                         </Form.Label>
@@ -134,7 +149,7 @@ class NewBaby extends React.Component {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalCheck">
+                    <Form.Group as={Row}>
                         <Col sm={{ span: 10, offset: 2 }}>
                             <Form.Check label="I accept the Terms and Conditions" />
                         </Col>

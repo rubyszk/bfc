@@ -6,8 +6,7 @@ class ComparisonPage extends Component {
         return (
             <div>
                 <NavigationBar/>
-                <hr/>
-                <div className='container'>
+                <div className='container jumbotron'>
                     <div className="row">
                         <div className='col square-image-container'>
                             <img src={this.props.duelBabies.baby1.image} className="img-thumbnail"></img>
