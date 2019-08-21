@@ -9,6 +9,8 @@ import NewBaby from './components/NewBaby';
 import Index from './components/Index';
 import UserSignUp from './components/UserSignUp.js';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import LogInPage from './components/LogInPage.js'
+import EditForm from './components/Edit.js'
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
 
@@ -28,6 +30,7 @@ class App extends React.Component {
     this.addBaby = this.addBaby.bind(this);
     this.getSpecificBaby = this.getSpecificBaby.bind(this);
     this.getTwoRandomBabies = this.getTwoRandomBabies.bind(this);
+    this.handleEditChange = this.handleEditChange.bind(this);
   }
 
   // add new baby
@@ -94,6 +97,15 @@ class App extends React.Component {
     console.log(this.state.duelBabies);
   }
 
+
+  handleEditChange(event) {
+    this.setState({
+      currentBaby: {
+        [event.currentTarget.name]: event.currentTarget.value
+      }
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -105,7 +117,7 @@ class App extends React.Component {
           />
           <Route
             path='/babies/show'
-            render={() => <Show currentBaby={this.state.currentBaby} />}
+            render={() => <Show currentBaby={this.state.currentBaby} getSpecificBaby={this.getSpecificBaby}/>}
           />
           <Route
             path='/babies/new'
@@ -118,6 +130,14 @@ class App extends React.Component {
           <Route 
             path='/new-user'
             render={() => <UserSignUp />}
+          />
+          <Route
+          path='/log-in'
+          render={() => <LogInPage />}
+          />
+          <Route
+          path='/edit'
+          render={() => <EditForm currentBaby={this.state.currentBaby} baseURL={baseURL} getSpecificBaby={this.getSpecificBaby} handleEditChange={this.handleEditChange}/>}
           />
         </div>
       </Router>
