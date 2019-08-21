@@ -115,9 +115,13 @@ class App extends React.Component {
             path='/babies/all'
             render={() => <Index babies={this.state.babies} getSpecificBaby={this.getSpecificBaby}/>}
           />
+          <Route 
+            path='/new-user'
+            render={() => <UserSignUp />}
+          />
         </div>
       </Router>
-    );
+    );  
   }
 }
 
