@@ -13,7 +13,7 @@ class NewBaby extends React.Component {
             about: '',
             wins: 0,
             losses: 0,
-            image: ''
+            image: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
