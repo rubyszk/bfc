@@ -1,30 +1,17 @@
 import React from 'react'
 import axios from 'axios'
+import { Form, Row, Col, Button } from 'react-bootstrap';
+
+import NavigationBar from './NavigationBar';
 
 class EditForm extends React.Component {
     constructor(props) {
-        this.state = {
-            name: this.props.currentBaby.name,
-            age: this.props.currentBaby.age,
-            weight: this.props.currentBaby.weight,
-            about: this.props.currentBaby.about,
-            wins: this.props.currentBaby.wins,
-            losses: this.props.currentBaby.losses,
-            image: this.props.currentBaby.image,
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-    handleChange(event) {
-        const {name, value} = event.target
-        this.setState({
-            [name]: value
-        })
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async handleSubmit(event) {
-        const response = await axios.put(`${baseURL}/babies/${this.props.currentBaby._id}`, {name: this.state.name, age: this.state.age, weight: this.state.weight, about: this.state.about, wins: this.state.wins, losses: this.state.losses, image: this.state.image})
+        const response = await axios.put(`${this.props.baseURL}/babies/${this.props.currentBaby._id}`, {name: this.state.name, age: this.state.age, weight: this.state.weight, about: this.state.about, wins: this.state.wins, losses: this.state.losses, image: this.state.image})
         this.setState({
             name: "",
             age: "",
@@ -35,13 +22,12 @@ class EditForm extends React.Component {
             image: "",
         })
         this.props.updateBaby(response.data)
-        window.location.replace(`${baseURL}/babies/${this.props.currentBaby._id}`)
+        window.location.replace(`${this.props.baseURL}/babies/${this.props.currentBaby._id}`)
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-            {this.renderRedirect()}
             <NavigationBar/>
             <div className="jumbotron container">
                 <h3>Edit Baby</h3>
@@ -52,7 +38,7 @@ class EditForm extends React.Component {
                             Name
                     </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="text" id="name" name="name" value={this.state.name} placeholder="Name" onChange={this.handleChange} required />
+                            <Form.Control type="text" id="name" name="name" value={this.props.currentBaby.name} placeholder="Name" onChange={this.props.handleEditChange} required />
                         </Col>
                     </Form.Group>
 
@@ -61,7 +47,7 @@ class EditForm extends React.Component {
                             Age
                     </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange} />
+                            <Form.Control type="number" id="age" name="age" value={this.props.currentBaby.age} onChange={this.props.handleEditChange} />
                         </Col>
                     </Form.Group>
                     <fieldset>
@@ -76,7 +62,7 @@ class EditForm extends React.Component {
                                     value="Featherweight"
                                     name="weight"
                                     id="formHorizontalRadios1"
-                                    onChange={this.handleChange}
+                                    onChange={this.props.handleEditChange}
                                 />
                                 <Form.Check
                                     type="radio"
@@ -84,7 +70,7 @@ class EditForm extends React.Component {
                                     value="Lightweight"
                                     name="weight"
                                     id="formHorizontalRadios2"
-                                    onChange={this.handleChange}
+                                    onChange={this.props.handleEditChange}
                                 />
                                 <Form.Check
                                     type="radio"
@@ -92,7 +78,7 @@ class EditForm extends React.Component {
                                     value="Welterweight"
                                     name="weight"
                                     id="formHorizontalRadios3"
-                                    onChange={this.handleChange}
+                                    onChange={this.props.handleEditChange}
                                 />
                                 <Form.Check
                                     type="radio"
@@ -100,7 +86,7 @@ class EditForm extends React.Component {
                                     value="Heavyweight"
                                     name="weight"
                                     id="formHorizontalRadios4"
-                                    onChange={this.handleChange}
+                                    onChange={this.props.handleEditChange}
                                 />
                             </Col>
                         </Form.Group>
@@ -111,7 +97,7 @@ class EditForm extends React.Component {
                             Biography
                         </Form.Label>
                         <Col sm={10}>
-                            <Form.Control as="textarea" id="about" name="about" value={this.state.about} onChange={this.handleChange}  />
+                            <Form.Control as="textarea" id="about" name="about" value={this.props.currentBaby.about} onChange={this.props.handleEditChange}  />
                         </Col>
                     </Form.Group>
 
@@ -120,7 +106,7 @@ class EditForm extends React.Component {
                             Image URL
                         </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="text" id="image" name="image" value={this.state.image} placeholder="Image URL" onChange={this.handleChange}/>
+                            <Form.Control type="text" id="image" name="image" value={this.props.currentBaby.image} placeholder="Image URL" onChange={this.props.handleEditChange}/>
                         </Col>
                     </Form.Group>
 
