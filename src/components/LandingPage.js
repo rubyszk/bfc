@@ -6,7 +6,7 @@ class LandingPage extends Component {
     return (
       <div className='landing'>
         <h1> Welcome to: Baby Fight Club </h1>
-        <a href='/babies'> Enter </a>
+        <a href='/babies/duel'> Enter </a>
       </div>
     );
   }

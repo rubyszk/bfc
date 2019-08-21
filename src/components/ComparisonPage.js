@@ -1,17 +1,22 @@
 import React, {Component} from 'react'
+import NavigationBar from './NavigationBar';
 
 class ComparisonPage extends Component {
     render() {
         return (
-            <div className='images'>
-                <div className='left'>
-                    <img src={this.props.babies.image}></img>
+            <div>
+                <NavigationBar/>
+                <div className='container jumbotron'>
+                    <div className="row">
+                        <div className='col square-image-container'>
+                            <img src={this.props.duelBabies.baby1.image} className="img-thumbnail"></img>
+                        </div>
+                
+                        <div className='col square-image-container'>
+                            <img src={this.props.duelBabies.baby2.image} className="img-thumbnail"></img>
+                        </div>
+                    </div>
                 </div>
-        
-                <div className='right'>
-                    <img src={this.props.babies.image}></img>
-                </div>
-                <a href='/babies/all'> Show All Fighters </a>
             </div>
         )
     }
