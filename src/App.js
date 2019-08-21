@@ -7,6 +7,7 @@ import ComparisonPage from './components/ComparisonPage.js';
 import './App.css';
 import NewBaby from './components/NewBaby';
 import Index from './components/Index';
+import UserSignUp from './components/UserSignUp.js';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
