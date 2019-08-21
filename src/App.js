@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
 
 import LandingPage from './components/LandingPage';
 import Show from './components/Show';
@@ -17,11 +16,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       babies: [],
-      currentBaby: {}
+      currentBaby: {},
+      duelBabies: {
+        baby1: {},
+        baby2: {}
+      }
     };
 
     this.getBabies = this.getBabies.bind(this);
     this.addBaby = this.addBaby.bind(this);
+    this.getSpecificBaby = this.getSpecificBaby.bind(this);
+    this.getTwoRandomBabies = this.getTwoRandomBabies.bind(this);
   }
 
   // add new baby
@@ -35,7 +40,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getBabies();
-    this.getSpecificBaby();
+    // this.getSpecificBaby('5d5c49a7419c2d00174ae023');
+    this.getTwoRandomBabies();
   }
 
   async getBabies() {
@@ -47,8 +53,8 @@ class App extends React.Component {
     console.log(this.state.babies);
   }
 
-  async getSpecificBaby() {
-    const id = '5d5c49a7419c2d00174ae023';
+  async getSpecificBaby(id) {
+    console.log(id);
     const response = await axios(`${baseURL}/babies/${id}`);
     const data = response.data;
     this.setState({
@@ -57,26 +63,34 @@ class App extends React.Component {
     console.log(this.state.currentBaby);
   }
 
+  async getTwoRandomBabies() {
+    const firstResponse = await axios(`${baseURL}/babies/random`);
+    const baby1 = firstResponse.data;
+
+    const secondResponse = await axios(`${baseURL}/babies/random`);
+    const baby2 = secondResponse.data;
+
+    this.setState({
+      duelBabies: {
+        baby1: baby1,
+        baby2: baby2
+      }
+    });
+    console.log(this.state.duelBabies);
+  }
+
   render() {
     return (
       <Router>
-        <div className='container'>
-          <Navbar bg="dark" variant="dark" expand="lg">
-            <Navbar.Brand href="/babies">Baby Fight Club</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link href="/babies/duel">Baby Duel!</Nav.Link>
-                <Nav.Link href="/babies/all">Show All Baby Fighters</Nav.Link>
-                <Nav.Link href="/babies/new">Register A Baby Fighter</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-          
+        <div>
           <Route path='/' exact component={LandingPage} />
           <Route
+            path='/babies/duel'
+            render={() => <ComparisonPage duelBabies={this.state.duelBabies} />}
+          />
+          <Route
             path='/babies/show'
-            render={() => <Show babies={this.state.currentBaby} />}
+            render={() => <Show currentBaby={this.state.currentBaby} />}
           />
           <Route
             path='/babies/new'
@@ -84,7 +98,7 @@ class App extends React.Component {
           />
           <Route
             path='/babies/all'
-            render={() => <Index babies={this.state.babies} />}
+            render={() => <Index babies={this.state.babies} getSpecificBaby={this.getSpecificBaby}/>}
           />
         </div>
       </Router>
