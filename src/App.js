@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import LandingPage from './components/LandingPage';
 import Show from './components/Show';
 import ComparisonPage from './components/ComparisonPage.js';
@@ -15,11 +16,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       babies: [],
-      currentBaby: {}
+      currentBaby: {},
+      duelBabies: {
+        baby1: {},
+        baby2: {}
+      }
     };
 
     this.getBabies = this.getBabies.bind(this);
     this.addBaby = this.addBaby.bind(this);
+    this.getSpecificBaby = this.getSpecificBaby.bind(this);
+    this.getTwoRandomBabies = this.getTwoRandomBabies.bind(this);
   }
 
   // add new baby
@@ -33,7 +40,14 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getBabies();
-    this.getSpecificBaby();
+    this.getTwoRandomBabies();
+    // this.deleteBaby();
+  }
+
+  async deleteBaby(){
+    const response = await axios.delete(`${baseURL}/babies/5d5ca9dbb7f31a0017c9360e`);
+    const data = response.data;
+    console.log(data);
   }
 
   async getBabies() {
@@ -45,8 +59,8 @@ class App extends React.Component {
     console.log(this.state.babies);
   }
 
-  async getSpecificBaby() {
-    const id = '5d5c49a7419c2d00174ae023';
+  async getSpecificBaby(id) {
+    console.log(id);
     const response = await axios(`${baseURL}/babies/${id}`);
     const data = response.data;
     this.setState({
@@ -55,16 +69,42 @@ class App extends React.Component {
     console.log(this.state.currentBaby);
   }
 
+  async getTwoRandomBabies() {
+    const firstResponse = await axios(`${baseURL}/babies/random`);
+    const baby1 = firstResponse.data;
+
+    let secondResponse = null;
+    let baby2 = {
+      _id: baby1._id
+    }
+    // make some conditions to make sure baby1 is not equal to baby2
+    while(baby2._id === baby1._id)
+    {
+      secondResponse = await axios(`${baseURL}/babies/random`);
+      baby2 = secondResponse.data;
+    }
+
+    this.setState({
+      duelBabies: {
+        baby1: baby1,
+        baby2: baby2
+      }
+    });
+    console.log(this.state.duelBabies);
+  }
+
   render() {
     return (
       <Router>
-        <div className='container'>
+        <div>
           <Route path='/' exact component={LandingPage} />
-          <Route path='/babies' component={ComparisonPage}/>
-          {/* <Route path='/babies/all' component={ShowAllPage}/> */}
+          <Route
+            path='/babies/duel'
+            render={() => <ComparisonPage duelBabies={this.state.duelBabies} />}
+          />
           <Route
             path='/babies/show'
-            render={() => <Show babies={this.state.currentBaby} />}
+            render={() => <Show currentBaby={this.state.currentBaby} />}
           />
           <Route
             path='/babies/new'
@@ -72,7 +112,7 @@ class App extends React.Component {
           />
           <Route
             path='/babies/all'
-            render={() => <Index babies={this.state.babies}/>} 
+            render={() => <Index babies={this.state.babies} getSpecificBaby={this.getSpecificBaby}/>}
           />
         </div>
       </Router>
