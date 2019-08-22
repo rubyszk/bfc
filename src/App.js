@@ -31,6 +31,8 @@ class App extends React.Component {
     this.getSpecificBaby = this.getSpecificBaby.bind(this);
     this.getTwoRandomBabies = this.getTwoRandomBabies.bind(this);
     this.handleEditChange = this.handleEditChange.bind(this);
+    this.changeDuelBaby = this.changeDuelBaby.bind(this);
+    this.updateScores = this.updateScores.bind(this);
   }
 
   // add new baby
@@ -97,6 +99,74 @@ class App extends React.Component {
     console.log(this.state.duelBabies);
   }
 
+  async updateScores(winBaby, lossBaby){
+    let updatedWinBaby = winBaby;
+    updatedWinBaby.wins = winBaby.wins + 1;
+
+    await axios.put(`${baseURL}/babies/${winBaby._id}`, updatedWinBaby);
+
+    let updatedLossBaby = lossBaby;
+    updatedLossBaby.losses = lossBaby.losses + 1;
+
+    await axios.put(`${baseURL}/babies/${lossBaby._id}`, updatedLossBaby);
+
+    if(this.state.duelBabies.baby1._id === winBaby._id){
+      console.log('hello')
+      this.setState({
+        duelBabies: {
+          baby1: updatedWinBaby,
+          baby2: updatedLossBaby
+        }
+      })
+    } else {
+      console.log('bye')
+      this.setState({
+        duelBabies: {
+          baby1: updatedLossBaby,
+          baby2: updatedWinBaby
+        }
+      })
+    }
+
+  }
+
+  async changeDuelBaby(winBaby, lossBaby) {
+    await this.updateScores(winBaby, lossBaby);
+
+    let response = null;
+    let newDuelBaby = {
+      _id: winBaby._id
+    }
+
+    while(newDuelBaby._id === winBaby._id || newDuelBaby._id === lossBaby._id)
+    {
+      response = await axios(`${baseURL}/babies/random`);
+      newDuelBaby = response.data;
+    }
+
+    console.log(newDuelBaby);
+
+    if(this.state.duelBabies.baby1._id === lossBaby._id){
+      console.log('hello')
+      this.setState({
+        duelBabies: {
+          baby1: newDuelBaby,
+          baby2: this.state.duelBabies.baby2
+        }
+      })
+    } else {
+      console.log('bye')
+      this.setState({
+        duelBabies: {
+          baby1: this.state.duelBabies.baby1,
+          baby2: newDuelBaby
+        }
+      })
+    }
+
+    console.log(this.state.duelBabies);
+  }
+
 
   handleEditChange(event) {
     this.setState({
@@ -113,7 +183,7 @@ class App extends React.Component {
           <Route path='/' exact component={LandingPage} />
           <Route
             path='/babies/duel'
-            render={() => <ComparisonPage duelBabies={this.state.duelBabies} />}
+            render={() => <ComparisonPage duelBabies={this.state.duelBabies} changeDuelBaby={this.changeDuelBaby}/>}
           />
           <Route
             path='/babies/show'
