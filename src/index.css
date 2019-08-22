@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap');
 
 body  {
-  background: url('https://www.sickchirpse.com/wp-content/uploads/2016/10/baby-fight-club.jpg') no-repeat center center fixed;
+  /* background: url('https://www.sickchirpse.com/wp-content/uploads/2016/10/baby-fight-club.jpg') no-repeat center center fixed; */
   background-size: cover;
+}
+
+h1 {
+  font-family: 'Bungee Shade', cursive;
+}
+
+#landing {
+  margin-top: 50px;
 }
