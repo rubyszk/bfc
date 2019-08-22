@@ -11,7 +11,7 @@ class LandingPage extends Component {
         <div className="d-flex align-items-center">
           <div className='jumbotron container'>
             <div className='main d-flex justify-content-center'>
-              <h1 class="display-3"> Welcome to: Baby Fight Club </h1>
+              <h1 class="display-3"> RUMBLE </h1>
             </div>
 
             <div className='d-flex justify-content-around'>
