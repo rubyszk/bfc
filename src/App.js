@@ -35,6 +35,7 @@ class App extends React.Component {
     this.changeDuelBaby = this.changeDuelBaby.bind(this);
     this.updateScores = this.updateScores.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.loginUser = this.loginUser.bind(this);
   }
 
   // add new baby
@@ -48,9 +49,15 @@ class App extends React.Component {
 
   // create new user
   createUser(user) {
+    console.log('USER CREATED!')
+  }
+
+  // Log In User
+  loginUser(user) {
     this.setState({
       currentUser: user
     })
+    console.log(this.state.currentUser);
   }
 
   componentDidMount() {
@@ -212,7 +219,7 @@ class App extends React.Component {
           />
           <Route
           path='/log-in'
-          render={() => <LogInPage />}
+          render={() => <LogInPage loginUser={this.loginUser} baseURL={baseURL}/>}
           />
           <Route
           path='/edit'
