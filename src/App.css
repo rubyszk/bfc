@@ -36,3 +36,10 @@
   .back {
     display: inline-flex;
   }
+
+  .UserBabyDetails  {
+    color: white;
+    width: 60%;
+    margin-top: 0px;
+    margin-bottom: 100px;
+  }

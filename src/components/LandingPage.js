@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import NavigationBar from './NavigationBar.js'
+import './LandingPage.css'
 
 class LandingPage extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className='landing'>
         <NavigationBar />
         <div className="d-flex align-items-center">
           <div className='jumbotron container'>

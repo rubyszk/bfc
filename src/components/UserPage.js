@@ -21,13 +21,15 @@ class UserPage extends React.Component {
                                             <img className="img-thumbnail UserImage" alt="Responsive image" src={baby.image}></img>
                                         </div>
                                             <div className='UserBabyDetails'>
-                                                Details:
-                                                Age: {baby.age}
-                                                Weight: {baby.weight}
-                                                About: {baby.about}
-                                                Wins: {baby.wins}
-                                                Losses: {baby.losses}
-                                            </div>    
+                                                <ul className='list-group'>
+                                                    <li className="badge badge-primary badge-pill">Details:</li>
+                                                    <li className="badge badge-primary badge-pill">Age: {baby.age}</li>
+                                                    <li className="badge badge-primary badge-pill">Weight: {baby.weight}</li>
+                                                    <li className="badge badge-primary badge-pill">About: {baby.about}</li>
+                                                    <li className="badge badge-primary badge-pill">Wins: {baby.wins}</li>
+                                                    <li className="badge badge-primary badge-pill">Losses: {baby.losses}</li>
+                                                </ul>
+                                            </div>  
                                     </div>
                                 )
                             })}
