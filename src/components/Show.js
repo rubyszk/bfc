@@ -34,11 +34,11 @@ class Show extends React.Component {
         <NavigationBar />
         <div className='container jumbotron'>
           <div className='show'>
-            <div className='square-image-container mx-auto'>
+            <div className='square-image-container mx-auto show'>
               <img
                 src={this.props.currentBaby.image}
                 alt=''
-                className='img-thumbnail'
+                className='img-thumbnail show'
               />
             </div>
             <h1>{this.props.currentBaby.name}</h1>
