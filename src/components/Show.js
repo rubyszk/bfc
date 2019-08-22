@@ -42,7 +42,7 @@ class Show extends React.Component {
               />
             </div>
             <h1>{this.props.currentBaby.name}</h1>
-            <h3>Age: {this.props.currentBaby.age}</h3>
+            <h3>Age: {this.props.currentBaby.age} months</h3>
             <h3>Weight: {this.props.currentBaby.weight}</h3>
             <h3>Wins: {this.props.currentBaby.wins}</h3>
             <h3>Losses: {this.props.currentBaby.losses}</h3>
