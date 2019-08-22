@@ -10,7 +10,9 @@ class LogInPage extends React.Component {
       this.state = {
           username: '',
           password: '',
-          isAdmin: false
+          isAdmin: false,
+          errLogin: false,
+          errMessage: ''
       }
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -18,21 +20,31 @@ class LogInPage extends React.Component {
 
   async handleSubmit(event) {
       event.preventDefault();
-      this.setState({
-              toUserPage: true
-      })
       const baseURL = this.props.baseURL;
-      const response = await axios.post(`${baseURL}/users/new`, {
+      const response = await axios.post(`${baseURL}/sessions`, {
           username: this.state.username,
           password: this.state.password,
           isAdmin: this.state.isAdmin
       });
-      this.setState = {
+      this.setState({
           username: '',
           password: '',
           isAdmin: false
+      })
+
+      if(!response.data.error)
+      {
+        this.props.loginUser(response.data.currentUser);
+        this.setState({
+            toUserPage: true
+        })
+      } else {
+        console.log('error')
+        this.setState({
+            errLogin: true,
+            errMessage: response.data.error
+        })
       }
-      this.props.addUser(response.data);
   }
 
   handleChange(event) {
@@ -48,11 +60,22 @@ class LogInPage extends React.Component {
       }
   }
 
+  hasError = () => {
+    if (this.state.errLogin) {
+        return (
+            <div class="container alert alert-danger" role="alert">
+            {this.state.errMessage}
+            </div>
+        )
+    }
+}
+
   render() {
     return (
       <div>
         {this.renderRedirect()}
-          <NavigationBar/>
+        <NavigationBar/>
+        {this.hasError()}
             <div className="jumbotron container">
                 <h3> Log in </h3>
                 <Form onSubmit={this.handleSubmit}>
