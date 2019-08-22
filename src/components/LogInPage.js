@@ -11,7 +11,8 @@ class LogInPage extends React.Component {
           username: '',
           password: '',
           isAdmin: false,
-          errLogin: false
+          errLogin: false,
+          errMessage: ''
       }
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -35,10 +36,14 @@ class LogInPage extends React.Component {
       {
         this.props.loginUser(response.data);
         this.setState({
-                toUserPage: true
+            toUserPage: true
         })
       } else {
         console.log('error')
+        this.setState({
+            errLogin: true,
+            errMessage: response.data.error
+        })
       }
   }
 
@@ -55,11 +60,22 @@ class LogInPage extends React.Component {
       }
   }
 
+  hasError = () => {
+    if (this.state.errLogin) {
+        return (
+            <div class="container alert alert-danger" role="alert">
+            {this.state.errMessage}
+            </div>
+        )
+    }
+}
+
   render() {
     return (
       <div>
         {this.renderRedirect()}
-          <NavigationBar/>
+        <NavigationBar/>
+        {this.hasError()}
             <div className="jumbotron container">
                 <h3> Log in </h3>
                 <Form onSubmit={this.handleSubmit}>
