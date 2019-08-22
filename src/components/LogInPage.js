@@ -10,7 +10,8 @@ class LogInPage extends React.Component {
       this.state = {
           username: '',
           password: '',
-          isAdmin: false
+          isAdmin: false,
+          errLogin: false
       }
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -18,21 +19,27 @@ class LogInPage extends React.Component {
 
   async handleSubmit(event) {
       event.preventDefault();
-      this.setState({
-              toUserPage: true
-      })
       const baseURL = this.props.baseURL;
-      const response = await axios.post(`${baseURL}/users/new`, {
+      const response = await axios.post(`${baseURL}/sessions`, {
           username: this.state.username,
           password: this.state.password,
           isAdmin: this.state.isAdmin
       });
-      this.setState = {
+      this.setState({
           username: '',
           password: '',
           isAdmin: false
+      })
+
+      if(!response.data.error)
+      {
+        this.props.loginUser(response.data);
+        this.setState({
+                toUserPage: true
+        })
+      } else {
+        console.log('error')
       }
-      this.props.addUser(response.data);
   }
 
   handleChange(event) {

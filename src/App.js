@@ -23,7 +23,8 @@ class App extends React.Component {
       duelBabies: {
         baby1: {},
         baby2: {}
-      }
+      },
+      currentUser: {}
     };
 
     this.getBabies = this.getBabies.bind(this);
@@ -33,6 +34,8 @@ class App extends React.Component {
     this.handleEditChange = this.handleEditChange.bind(this);
     this.changeDuelBaby = this.changeDuelBaby.bind(this);
     this.updateScores = this.updateScores.bind(this);
+    this.createUser = this.createUser.bind(this);
+    this.loginUser = this.loginUser.bind(this);
   }
 
   // add new baby
@@ -42,6 +45,19 @@ class App extends React.Component {
     this.setState({
       babies: copyBabies
     });
+  }
+
+  // create new user
+  createUser(user) {
+    console.log('USER CREATED!')
+  }
+
+  // Log In User
+  loginUser(user) {
+    this.setState({
+      currentUser: user
+    })
+    console.log(this.state.currentUser);
   }
 
   componentDidMount() {
@@ -199,11 +215,11 @@ class App extends React.Component {
           />
           <Route 
             path='/new-user'
-            render={() => <UserSignUp />}
+            render={() => <UserSignUp createUser={this.createUser} baseURL={baseURL}/>}
           />
           <Route
           path='/log-in'
-          render={() => <LogInPage />}
+          render={() => <LogInPage loginUser={this.loginUser} baseURL={baseURL}/>}
           />
           <Route
           path='/edit'
