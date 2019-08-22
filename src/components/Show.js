@@ -47,9 +47,11 @@ class Show extends React.Component {
             <h3>Wins: {this.props.currentBaby.wins}</h3>
             <h3>Losses: {this.props.currentBaby.losses}</h3>
             <h3>Bio: {this.props.currentBaby.about}</h3>
-            <a href='/babies/all'><button class="btn btn-dark">Back</button></a>
+            <a href='/babies/all'>
+              <button class='btn btn-dark'>Back</button>
+            </a>
             <button
-              className='btn btn-primary'
+              className='btn btn-primary edit'
               onClick={() => {
                 this.goToEditPage(this.props.currentBaby._id);
               }}
