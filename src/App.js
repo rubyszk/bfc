@@ -23,7 +23,8 @@ class App extends React.Component {
       duelBabies: {
         baby1: {},
         baby2: {}
-      }
+      },
+      currentUser: {}
     };
 
     this.getBabies = this.getBabies.bind(this);
@@ -33,6 +34,7 @@ class App extends React.Component {
     this.handleEditChange = this.handleEditChange.bind(this);
     this.changeDuelBaby = this.changeDuelBaby.bind(this);
     this.updateScores = this.updateScores.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   // add new baby
@@ -42,6 +44,13 @@ class App extends React.Component {
     this.setState({
       babies: copyBabies
     });
+  }
+
+  // create new user
+  createUser(user) {
+    this.setState({
+      currentUser: user
+    })
   }
 
   componentDidMount() {
@@ -199,7 +208,7 @@ class App extends React.Component {
           />
           <Route 
             path='/new-user'
-            render={() => <UserSignUp />}
+            render={() => <UserSignUp createUser={this.createUser} baseURL={baseURL}/>}
           />
           <Route
           path='/log-in'
