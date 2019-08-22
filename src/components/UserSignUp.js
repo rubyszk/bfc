@@ -26,7 +26,7 @@ class NewBaby extends React.Component {
 
                         <div className="clearfix">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-danger">Cancel</button>
+                            <button href='/' type="button" class="btn btn-danger"> Cancel </button>
                         </div>
                     </form>
             </div>    

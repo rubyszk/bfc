@@ -11,6 +11,7 @@ import UserSignUp from './components/UserSignUp.js';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import LogInPage from './components/LogInPage.js'
 import EditForm from './components/Edit.js'
+import UserPage from './components/UserPage.js'
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
 
@@ -138,6 +139,10 @@ class App extends React.Component {
           <Route
           path='/edit'
           render={() => <EditForm currentBaby={this.state.currentBaby} baseURL={baseURL} getSpecificBaby={this.getSpecificBaby} handleEditChange={this.handleEditChange}/>}
+          />
+          <Route
+          path='/user'
+          render={() => <UserPage babies={this.state.babies} />}
           />
         </div>
       </Router>
