@@ -34,7 +34,7 @@ class LogInPage extends React.Component {
 
       if(!response.data.error)
       {
-        this.props.loginUser(response.data);
+        this.props.loginUser(response.data.currentUser);
         this.setState({
             toUserPage: true
         })

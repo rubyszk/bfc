@@ -68,13 +68,13 @@ class App extends React.Component {
 
   async deleteBaby(){
     const response = await axios.delete(`${baseURL}/babies/5d5ca9dbb7f31a0017c9360e`);
-    const data = response.data;
+    const data = response.data.deletedBaby;
     console.log(data);
   }
 
   async getBabies() {
     const response = await axios(`${baseURL}/babies/all`);
-    const data = response.data;
+    const data = response.data.foundBabies;
     this.setState({
       babies: data
     });
@@ -84,7 +84,7 @@ class App extends React.Component {
   async getSpecificBaby(id) {
     console.log(id);
     const response = await axios(`${baseURL}/babies/${id}`);
-    const data = response.data;
+    const data = response.data.foundBaby;
     this.setState({
       currentBaby: data
     });
@@ -93,7 +93,7 @@ class App extends React.Component {
 
   async getTwoRandomBabies() {
     const firstResponse = await axios(`${baseURL}/babies/random`);
-    const baby1 = firstResponse.data;
+    const baby1 = firstResponse.data.foundBabies;
 
     let secondResponse = null;
     let baby2 = {
@@ -103,7 +103,7 @@ class App extends React.Component {
     while(baby2._id === baby1._id)
     {
       secondResponse = await axios(`${baseURL}/babies/random`);
-      baby2 = secondResponse.data;
+      baby2 = secondResponse.data.foundBabies;
     }
 
     this.setState({
@@ -157,7 +157,7 @@ class App extends React.Component {
     while(newDuelBaby._id === winBaby._id || newDuelBaby._id === lossBaby._id)
     {
       response = await axios(`${baseURL}/babies/random`);
-      newDuelBaby = response.data;
+      newDuelBaby = response.data.foundBabies;
     }
 
     console.log(newDuelBaby);
