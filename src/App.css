@@ -28,3 +28,7 @@
     object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
     object-position: center;
   }
+
+  .square-image-container-full {
+    width: 100%;
+  }

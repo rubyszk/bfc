@@ -1,14 +1,41 @@
 import React from 'react';
-import axios from 'axios';
-import { Form, Row, Col, Button } from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
 
-import NavigationBar from './NavigationBar';
 
 class NewBaby extends React.Component {
+    render() {
+        return (
+            <div className='jumbotron container'>
+                    <h1> Sign Up New User </h1>
+                    <p>Please fill out the following to create an account</p>
+                    <form>
+                        <div className="form-group">
+                            <label for='email'><b>Email</b></label>
+                            <input type='text' className='form-control' placeholder='Enter Email' name='email'></input>
+                        </div>
+
+                        <div className="form-group">
+                            <label for='email' ><b>Password</b></label>
+                            <input type='text' className='form-control' placeholder='Enter Password' name='password'></input>
+                        </div>
+
+                        <div className="form-group">
+                            <label for='email' ><b> Re-Enter Password</b></label>
+                            <input type='text' className='form-control' placeholder='Re-Enter Password' name='ReEnterPassword'></input>
+                        </div>
+
+
+                        <div className="clearfix">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </form>
+            </div>    
+=======
     constructor(props) {
         super(props);
         this.state = {
+            firstname: '',
+            lastname: '',
             username: '',
             password: '',
             isAdmin: false
@@ -24,11 +51,15 @@ class NewBaby extends React.Component {
         })
         const baseURL = this.props.baseURL;
         const response = await axios.post(`${baseURL}/users/new`, {
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
             username: this.state.username,
             password: this.state.password,
             isAdmin: this.state.isAdmin
         });
         this.setState = {
+            firstname: '',
+            lastname: '',
             username: '',
             password: '',
             isAdmin: false
@@ -58,6 +89,22 @@ class NewBaby extends React.Component {
                 <h3>Register to BFC</h3>
                 <Form onSubmit={this.handleSubmit}>
                     <hr />
+
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>
+                            First Name
+                    </Form.Label>
+                        <Col sm={4}>
+                            <Form.Control type="text" id="firstname" name="firstname" value={this.state.firstname} placeholder="First Name" onChange={this.handleChange} required />
+                        </Col>
+                        <Form.Label column sm={2}>
+                            Last Name
+                    </Form.Label>
+                        <Col sm={4}>
+                            <Form.Control type="text" id="lastname" name="lastname" value={this.state.lastname} placeholder="Last Name" onChange={this.handleChange} required />
+                        </Col>
+                    </Form.Group>
+
                     <Form.Group as={Row}>
                         <Form.Label column sm={2}>
                             Username
