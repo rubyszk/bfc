@@ -11,6 +11,7 @@ import UserSignUp from './components/UserSignUp.js';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import LogInPage from './components/LogInPage.js'
 import EditForm from './components/Edit.js'
+import UserPage from './components/UserPage.js'
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
 
@@ -23,7 +24,8 @@ class App extends React.Component {
       duelBabies: {
         baby1: {},
         baby2: {}
-      }
+      },
+      currentUser: {}
     };
 
     this.getBabies = this.getBabies.bind(this);
@@ -31,6 +33,10 @@ class App extends React.Component {
     this.getSpecificBaby = this.getSpecificBaby.bind(this);
     this.getTwoRandomBabies = this.getTwoRandomBabies.bind(this);
     this.handleEditChange = this.handleEditChange.bind(this);
+    this.changeDuelBaby = this.changeDuelBaby.bind(this);
+    this.updateScores = this.updateScores.bind(this);
+    this.createUser = this.createUser.bind(this);
+    this.loginUser = this.loginUser.bind(this);
   }
 
   // add new baby
@@ -42,6 +48,19 @@ class App extends React.Component {
     });
   }
 
+  // create new user
+  createUser(user) {
+    console.log('USER CREATED!')
+  }
+
+  // Log In User
+  loginUser(user) {
+    this.setState({
+      currentUser: user
+    })
+    console.log(this.state.currentUser);
+  }
+
   componentDidMount() {
     this.getBabies();
     this.getTwoRandomBabies();
@@ -50,13 +69,13 @@ class App extends React.Component {
 
   async deleteBaby(){
     const response = await axios.delete(`${baseURL}/babies/5d5ca9dbb7f31a0017c9360e`);
-    const data = response.data;
+    const data = response.data.deletedBaby;
     console.log(data);
   }
 
   async getBabies() {
     const response = await axios(`${baseURL}/babies/all`);
-    const data = response.data;
+    const data = response.data.foundBabies;
     this.setState({
       babies: data
     });
@@ -66,7 +85,7 @@ class App extends React.Component {
   async getSpecificBaby(id) {
     console.log(id);
     const response = await axios(`${baseURL}/babies/${id}`);
-    const data = response.data;
+    const data = response.data.foundBaby;
     this.setState({
       currentBaby: data
     });
@@ -75,7 +94,7 @@ class App extends React.Component {
 
   async getTwoRandomBabies() {
     const firstResponse = await axios(`${baseURL}/babies/random`);
-    const baby1 = firstResponse.data;
+    const baby1 = firstResponse.data.foundBabies;
 
     let secondResponse = null;
     let baby2 = {
@@ -85,7 +104,7 @@ class App extends React.Component {
     while(baby2._id === baby1._id)
     {
       secondResponse = await axios(`${baseURL}/babies/random`);
-      baby2 = secondResponse.data;
+      baby2 = secondResponse.data.foundBabies;
     }
 
     this.setState({
@@ -94,6 +113,74 @@ class App extends React.Component {
         baby2: baby2
       }
     });
+    console.log(this.state.duelBabies);
+  }
+
+  async updateScores(winBaby, lossBaby){
+    let updatedWinBaby = winBaby;
+    updatedWinBaby.wins = winBaby.wins + 1;
+
+    await axios.put(`${baseURL}/babies/${winBaby._id}`, updatedWinBaby);
+
+    let updatedLossBaby = lossBaby;
+    updatedLossBaby.losses = lossBaby.losses + 1;
+
+    await axios.put(`${baseURL}/babies/${lossBaby._id}`, updatedLossBaby);
+
+    if(this.state.duelBabies.baby1._id === winBaby._id){
+      console.log('hello')
+      this.setState({
+        duelBabies: {
+          baby1: updatedWinBaby,
+          baby2: updatedLossBaby
+        }
+      })
+    } else {
+      console.log('bye')
+      this.setState({
+        duelBabies: {
+          baby1: updatedLossBaby,
+          baby2: updatedWinBaby
+        }
+      })
+    }
+
+  }
+
+  async changeDuelBaby(winBaby, lossBaby) {
+    await this.updateScores(winBaby, lossBaby);
+
+    let response = null;
+    let newDuelBaby = {
+      _id: winBaby._id
+    }
+
+    while(newDuelBaby._id === winBaby._id || newDuelBaby._id === lossBaby._id)
+    {
+      response = await axios(`${baseURL}/babies/random`);
+      newDuelBaby = response.data.foundBabies;
+    }
+
+    console.log(newDuelBaby);
+
+    if(this.state.duelBabies.baby1._id === lossBaby._id){
+      console.log('hello')
+      this.setState({
+        duelBabies: {
+          baby1: newDuelBaby,
+          baby2: this.state.duelBabies.baby2
+        }
+      })
+    } else {
+      console.log('bye')
+      this.setState({
+        duelBabies: {
+          baby1: this.state.duelBabies.baby1,
+          baby2: newDuelBaby
+        }
+      })
+    }
+
     console.log(this.state.duelBabies);
   }
 
@@ -113,7 +200,7 @@ class App extends React.Component {
           <Route path='/' exact component={LandingPage} />
           <Route
             path='/babies/duel'
-            render={() => <ComparisonPage duelBabies={this.state.duelBabies} />}
+            render={() => <ComparisonPage duelBabies={this.state.duelBabies} changeDuelBaby={this.changeDuelBaby}/>}
           />
           <Route
             path='/babies/show'
@@ -129,15 +216,19 @@ class App extends React.Component {
           />
           <Route 
             path='/new-user'
-            render={() => <UserSignUp />}
+            render={() => <UserSignUp createUser={this.createUser} baseURL={baseURL}/>}
           />
           <Route
           path='/log-in'
-          render={() => <LogInPage />}
+          render={() => <LogInPage loginUser={this.loginUser} baseURL={baseURL}/>}
           />
           <Route
           path='/edit'
           render={() => <EditForm currentBaby={this.state.currentBaby} baseURL={baseURL} getSpecificBaby={this.getSpecificBaby} handleEditChange={this.handleEditChange}/>}
+          />
+          <Route
+          path='/user'
+          render={() => <UserPage babies={this.state.babies} />}
           />
         </div>
       </Router>

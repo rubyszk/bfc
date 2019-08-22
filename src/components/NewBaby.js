@@ -47,7 +47,7 @@ class NewBaby extends React.Component {
             losses: 0,
             image: ''
         }
-        this.props.addBaby(response.data);
+        this.props.addBaby(response.data.newBaby);
     }
 
     handleChange(event) {

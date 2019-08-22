@@ -5,10 +5,21 @@ body  {
   background-size: cover;
 }
 
-h1 {
+/* h1 {
   font-family: 'Bungee Shade', cursive;
-}
+} */
 
 #landing {
   margin-top: 50px;
 }
+.UserImage  {
+  width: 45%;
+  display: block;
+  margin-top: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 auto;
+  padding: 10px;
+  min-width: 45%;
+}
+

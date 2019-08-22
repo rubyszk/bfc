@@ -28,3 +28,18 @@
     object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
     object-position: center;
   }
+
+  .square-image-container-full {
+    width: 100%;
+  }
+
+  .back {
+    display: inline-flex;
+  }
+
+  .UserBabyDetails  {
+    color: white;
+    width: 60%;
+    margin-top: 0px;
+    margin-bottom: 100px;
+  }
