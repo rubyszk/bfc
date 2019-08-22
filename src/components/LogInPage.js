@@ -1,30 +1,91 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
+import axios from 'axios';
+import { Form, Row, Col, Button } from 'react-bootstrap';
+import NavigationBar from './NavigationBar';
+
+class LogInPage extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          username: '',
+          password: '',
+          isAdmin: false
+      }
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+  }
+
+  async handleSubmit(event) {
+      event.preventDefault();
+      this.setState({
+              toUserPage: true
+      })
+      const baseURL = this.props.baseURL;
+      const response = await axios.post(`${baseURL}/users/new`, {
+          username: this.state.username,
+          password: this.state.password,
+          isAdmin: this.state.isAdmin
+      });
+      this.setState = {
+          username: '',
+          password: '',
+          isAdmin: false
+      }
+      this.props.addUser(response.data);
+  }
+
+  handleChange(event) {
+      this.setState({
+          [event.currentTarget.name]: event.currentTarget.value
+      });
+  }
 
 
-class LogInPage extends Component {
+  renderRedirect = () => {
+      if (this.state.toUserPage) {
+          return <Redirect to='/user' />
+      }
+  }
+
   render() {
     return (
-        <div className='jumbotron container'>
-            <h1>Sign Up New User</h1>
-            <p>Please fill out the following to create an account</p>
-            <form>
-                <label for='email'><b>Email</b></label>
-                <input type='text' placeholder='Enter Email' name='email'></input>
+      <div>
+        {this.renderRedirect()}
+          <NavigationBar/>
+            <div className="jumbotron container">
+                <h3> Log in </h3>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Group as={Row}>
+                      <Form.Label column sm={2}>
+                          Username
+                  </Form.Label>
+                      <Col sm={10}>
+                          <Form.Control type="text" id="username" name="username" value={this.state.username} placeholder="Username" onChange={this.handleChange} required />
+                      </Col>
+                  </Form.Group>
 
-                <label for='email'><b>Password</b></label>
-                <input type='text' placeholder='Enter Password' name='password'></input>
+                  <Form.Group as={Row}>
+                      <Form.Label column sm={2}>
+                          Password
+                  </Form.Label>
+                      <Col sm={10}>
+                          <Form.Control type="password" id="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
+                      </Col>
+                  </Form.Group>
 
-                <label for='email'><b> Re-Enter Password</b></label>
-                <input type='text' placeholder='Re-Enter Password' name='ReEnterPassword'></input>
+                  <Form.Group as={Row}>
+                    <Col sm={{ span: 10, offset: 2 }}>
+                        <Button type="submit"> Enter </Button>
+                    </Col>
+                </Form.Group>
+              </Form>
+            </div> 
+        </div>    
 
-                <div class="clearfix">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-danger">Cancel</button>
-                </div>
-            </form>
-        </div>
     )
   }
 }
 
 export default LogInPage;
+
