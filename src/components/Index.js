@@ -36,7 +36,9 @@ class Index extends React.Component {
           <div className='index row justify-content-center'>
             {this.props.babies
               .sort((a, b) => {
-                return b.wins - a.wins;
+                const percentage1 = (a.wins / a.losses) * 100;
+                const percentage2 = (b.wins / b.losses) * 100;
+                return percentage2 - percentage1;
               })
               .map(baby => {
                 return (
