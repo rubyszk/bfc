@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import {Redirect} from 'react-router-dom';
 
 class NewBaby extends React.Component {
     constructor(props){
@@ -10,7 +10,8 @@ class NewBaby extends React.Component {
             lastName : '',
             username : '',
             password : '',
-            reEnterPassword : ''
+            reEnterPassword : '',
+            toLoginPage: false
         }
         this.handleUserCreation = this.handleUserCreation.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -25,7 +26,8 @@ class NewBaby extends React.Component {
             lastName : '',
             username : '',
             password : '',
-            reEnterPassword : ''
+            reEnterPassword : '',
+            toLoginPage: true
         });
         this.props.createUser(response.data);
     }
@@ -36,9 +38,17 @@ class NewBaby extends React.Component {
         });
     }
 
+
+    renderRedirect = () => {
+        if (this.state.toLoginPage) {
+            return <Redirect to='/log-in' />
+        }
+    }
+
     render() {
         return (
             <div className='jumbotron container'>
+            {this.renderRedirect()}
                     <h1> Sign Up New User </h1>
                     <p>Please fill out the following to create an account</p>
                     <form onSubmit={this.handleUserCreation}>
