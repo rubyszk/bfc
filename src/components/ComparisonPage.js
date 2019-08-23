@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import NavigationBar from './NavigationBar';
 
 class ComparisonPage extends Component {
     constructor(props){
@@ -19,7 +18,6 @@ class ComparisonPage extends Component {
     render() {
         return (
             <div>
-                <NavigationBar/>
                 <div className='container jumbotron'>
                     <div className="row">
                         <div className="col-5">

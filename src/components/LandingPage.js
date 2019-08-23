@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import NavigationBar from './NavigationBar.js'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './LandingPage.css'
 
 class LandingPage extends Component {
+  renderRedirect = () => {
+    if (this.props.currentUser !== null) {
+      return <Redirect to='/user' />;
+    }
+  };
   render() {
     // console.log(this.props);
     return (
       <div className='landing'>
-        <NavigationBar />
+      {this.renderRedirect()}
         <div className="d-flex align-items-center">
           <div className='jumbotron container'>
             <div className='main d-flex justify-content-center'>
@@ -15,9 +21,9 @@ class LandingPage extends Component {
             </div>
 
             <div className='d-flex justify-content-around'>
-              <a href='/babies/duel'><button type="button" class="btn btn-primary">Enter</button></a>
-              <a href='/log-in'><button type="button" class="btn btn-primary">Log In</button></a>
-              <a href='/new-user'><button type="button" class="btn btn-primary">Register</button></a>
+              <Link to='/babies/duel'><button type="button" class="btn btn-primary">Enter</button></Link>
+              <Link to='/log-in'><button type="button" class="btn btn-primary">Log In</button></Link>
+              <Link to='/new-user'><button type="button" class="btn btn-primary">Register</button></Link>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import NavigationBar from './NavigationBar';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class LogInPage extends React.Component {
   constructor(props) {
@@ -55,8 +55,8 @@ class LogInPage extends React.Component {
 
 
   renderRedirect = () => {
-      if (this.state.toUserPage) {
-          return <Redirect to='/babies/duel' />
+      if (this.state.toUserPage || this.props.currentUser !== null) {
+          return <Redirect to='/user' />
       }
   }
 
@@ -74,7 +74,6 @@ class LogInPage extends React.Component {
     return (
       <div>
         {this.renderRedirect()}
-        <NavigationBar/>
         {this.hasError()}
             <div className="jumbotron container">
                 <h3> Log in </h3>
@@ -103,6 +102,10 @@ class LogInPage extends React.Component {
                     </Col>
                 </Form.Group>
               </Form>
+              <hr/>
+              <div className="d-flex justify-content-center">
+                <h6>Don't have an account? <Link to="/new-user">Create one!</Link></h6>
+              </div>
             </div> 
         </div>    
 
