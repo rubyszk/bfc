@@ -2,11 +2,27 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 class UserPage extends React.Component {
+  constructor(props)  {
+    super(props)  
+      this.state = {
+        toEditPage : false
+      }
+      this.goToEdit = this.goToEdit.bind(this)
+  } 
   renderRedirect = () => {
     if (this.props.currentUser === null) {
       return <Redirect to='/' />;
+    } else if (this.state.toEditPage) {
+      return <Redirect to='/edit'/>
     }
   };
+
+  goToEdit()  {
+    this.setState({
+      toEditPage : true
+    })
+  }
+
   render() {
     return (
       <div>
@@ -64,7 +80,7 @@ class UserPage extends React.Component {
                           </ul>
 
                           <div className='userButtons'>
-                            <button type='button' class='btn btn-light'>
+                            <button onClick={this.goToEdit}type='button' class='btn btn-light'>
                               Edit
                             </button>
                             <button
