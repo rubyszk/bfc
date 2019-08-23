@@ -2,10 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
-
-
-import NavigationBar from './NavigationBar';
-
 class NewBaby extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +32,8 @@ class NewBaby extends React.Component {
             about: this.state.about,
             wins: this.state.wins,
             losses: this.state.losses,
-            image: this.state.image
+            image: this.state.image,
+            userId: this.props.currentUser._id
         });
         this.setState = {
             name: '',
@@ -59,7 +56,9 @@ class NewBaby extends React.Component {
 
     renderRedirect = () => {
         if (this.state.toIndexPage) {
-            return <Redirect to='/babies/all' />
+            return <Redirect to='/user' />
+        } else if (this.props.currentUser === null) {
+            return <Redirect to='/' />
         }
     }
 
@@ -67,7 +66,6 @@ class NewBaby extends React.Component {
         return (
             <div>
             {this.renderRedirect()}
-            <NavigationBar/>
             <div className="jumbotron container">
                 <h3>Add a New Baby</h3>
                 <Form onSubmit={this.handleSubmit}>
@@ -83,7 +81,7 @@ class NewBaby extends React.Component {
 
                     <Form.Group as={Row}>
                         <Form.Label column sm={2}>
-                            Age
+                            Age (in months)
                     </Form.Label>
                         <Col sm={10}>
                             <Form.Control type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange} />
@@ -101,6 +99,7 @@ class NewBaby extends React.Component {
                                     value="Featherweight"
                                     name="weight"
                                     id="formHorizontalRadios1"
+                                    defaultChecked
                                     onChange={this.handleChange}
                                 />
                                 <Form.Check
