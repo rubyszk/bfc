@@ -63,8 +63,17 @@ class App extends React.Component {
     });
   }
 
+  checkSession() {
+    if(sessionStorage.getItem('currentUser')){
+      this.setState({
+        currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
+      })
+    }
+  }
+
   // Log out User
   logoutUser(user) {
+    sessionStorage.removeItem('currentUser');
     this.setState({
       currentUser: null
     });
@@ -73,6 +82,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getBabies();
     this.getTwoRandomBabies();
+    this.checkSession();
     // this.deleteBaby();
   }
 
