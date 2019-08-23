@@ -36,7 +36,8 @@ class NewBaby extends React.Component {
             about: this.state.about,
             wins: this.state.wins,
             losses: this.state.losses,
-            image: this.state.image
+            image: this.state.image,
+            userId: this.props.currentUser._id
         });
         this.setState = {
             name: '',

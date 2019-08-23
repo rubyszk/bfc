@@ -1,5 +1,6 @@
 import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class NavigationBar extends React.Component {
     render() {
@@ -9,9 +10,11 @@ class NavigationBar extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                <Nav.Link href="/babies/duel">Baby Duel!</Nav.Link>
-                <Nav.Link href="/babies/all">Baby Fighters!</Nav.Link>
-                <Nav.Link href="/babies/new">New Baby!</Nav.Link>
+                <Link to="/babies/duel" className="nav-link">Baby Duel!</Link>
+                <Link to="/babies/all" className="nav-link">Baby Fighters!</Link>
+                {
+                    this.props.currentUser !== {} ? <Link to="/babies/new" className="nav-link">New Baby!</Link> : null
+                }
                 </Nav>
             </Navbar.Collapse>
             </Navbar>

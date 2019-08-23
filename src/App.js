@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage';
 import Show from './components/Show';
 import ComparisonPage from './components/ComparisonPage.js';
-import './App.css';
 import NewBaby from './components/NewBaby';
 import Index from './components/Index';
 import UserSignUp from './components/UserSignUp.js';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import LogInPage from './components/LogInPage.js'
 import EditForm from './components/Edit.js'
 
@@ -57,7 +57,6 @@ class App extends React.Component {
     this.setState({
       currentUser: user
     })
-    console.log(this.state.currentUser);
   }
 
   componentDidMount() {
@@ -199,31 +198,31 @@ class App extends React.Component {
           <Route path='/' exact component={LandingPage} />
           <Route
             path='/babies/duel'
-            render={() => <ComparisonPage duelBabies={this.state.duelBabies} changeDuelBaby={this.changeDuelBaby}/>}
+            render={() => <ComparisonPage duelBabies={this.state.duelBabies} changeDuelBaby={this.changeDuelBaby} currentUser={this.state.currentUser}/>}
           />
           <Route
             path='/babies/show'
-            render={() => <Show currentBaby={this.state.currentBaby} getSpecificBaby={this.getSpecificBaby}/>}
+            render={() => <Show currentBaby={this.state.currentBaby} getSpecificBaby={this.getSpecificBaby} currentUser={this.state.currentUser}/>}
           />
           <Route
             path='/babies/new'
-            render={() => <NewBaby addBaby={this.addBaby} baseURL={baseURL} />}
+            render={() => <NewBaby addBaby={this.addBaby} baseURL={baseURL} currentUser={this.state.currentUser}/>}
           />
           <Route
             path='/babies/all'
-            render={() => <Index babies={this.state.babies} getSpecificBaby={this.getSpecificBaby}/>}
+            render={() => <Index babies={this.state.babies} getSpecificBaby={this.getSpecificBaby} currentUser={this.state.currentUser}/>}
           />
           <Route 
             path='/new-user'
-            render={() => <UserSignUp createUser={this.createUser} baseURL={baseURL}/>}
+            render={() => <UserSignUp createUser={this.createUser} baseURL={baseURL} currentUser={this.state.currentUser}/>}
           />
           <Route
           path='/log-in'
-          render={() => <LogInPage loginUser={this.loginUser} baseURL={baseURL}/>}
+          render={() => <LogInPage loginUser={this.loginUser} baseURL={baseURL} currentUser={this.state.currentUser}/>}
           />
           <Route
           path='/edit'
-          render={() => <EditForm currentBaby={this.state.currentBaby} baseURL={baseURL} getSpecificBaby={this.getSpecificBaby} handleEditChange={this.handleEditChange}/>}
+          render={() => <EditForm currentBaby={this.state.currentBaby} baseURL={baseURL} getSpecificBaby={this.getSpecificBaby} handleEditChange={this.handleEditChange} currentUser={this.state.currentUser}/>}
           />
         </div>
       </Router>

@@ -56,7 +56,7 @@ class LogInPage extends React.Component {
 
   renderRedirect = () => {
       if (this.state.toUserPage) {
-          return <Redirect to='/user' />
+          return <Redirect to='/babies/duel' />
       }
   }
 
