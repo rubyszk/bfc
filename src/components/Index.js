@@ -1,7 +1,6 @@
 // import axios from 'axios';
 import React from 'react';
 import { Redirect } from 'react-router-dom'
-import NavigationBar from './NavigationBar';
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +29,6 @@ class Index extends React.Component {
     return (
       <div>
         {this.renderRedirect()}
-        <NavigationBar />
         <div className='container jumbotron'>
           <div className='index row justify-content-center'>
             {this.props.babies
