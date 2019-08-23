@@ -8,31 +8,8 @@ class EditForm extends React.Component {
   }
 
   async handleSubmit(event) {
-    const response = await axios.put(
-      `${this.props.baseURL}/babies/${this.props.currentBaby._id}`,
-      {
-        name: this.state.name,
-        age: this.state.age,
-        weight: this.state.weight,
-        about: this.state.about,
-        wins: this.state.wins,
-        losses: this.state.losses,
-        image: this.state.image
-      }
-    );
-    this.setState({
-      name: '',
-      age: '',
-      weight: '',
-      about: '',
-      wins: '',
-      losses: '',
-      image: ''
-    });
-    this.props.updateBaby(response.data);
-    window.location.replace(
-      `${this.props.baseURL}/babies/${this.props.currentBaby._id}`
-    );
+    event.preventDefault()
+    this.props.updateBaby();
   }
 
   render() {
