@@ -19,13 +19,15 @@ class NavigationBar extends React.Component {render() {
                 {
                     this.props.currentUser !== null ?
                     (<Nav>
+                        <Nav.Link href='#'><Link to='/user' className='nav-link'>Your Babies</Link></Nav.Link>
                         <Nav.Link href="#"><Link to="#" className="nav-link" onClick={() => this.props.logoutUser(this.props.currentUser)}>Log Out</Link></Nav.Link>
                       </Nav>) : 
-                      (
-                          <Nav>
-                            <Nav.Link href="#"><Link to="/log-in" className="nav-link">Login</Link></Nav.Link>
-                          </Nav>
-                      )
+                        
+                        (
+                            <Nav>
+                                <Nav.Link href="#"><Link to="/log-in" className="nav-link">Login</Link></Nav.Link>
+                            </Nav>
+                        )
                 }
             </Navbar.Collapse>
             </Navbar>

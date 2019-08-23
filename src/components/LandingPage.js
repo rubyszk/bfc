@@ -12,6 +12,8 @@ class LandingPage extends Component {
             <div className='main d-flex justify-content-center'>
               <h1 class="display-1"> Rumble </h1>
             </div>
+              <h2> Showdown to Find the Cutest Baby! </h2>
+              <h5> Disclaimer: <i>No Babies Were Harmed in the Making of this Project</i></h5>
 
               {
                 this.props.currentUser !== null ?
