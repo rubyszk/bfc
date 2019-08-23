@@ -38,6 +38,7 @@ class LogInPage extends React.Component {
         this.setState({
             toUserPage: true
         })
+        sessionStorage.setItem('currentUser', JSON.stringify(response.data.currentUser));
       } else {
         console.log('error')
         this.setState({
