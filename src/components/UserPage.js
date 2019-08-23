@@ -30,14 +30,19 @@ class UserPage extends React.Component {
                                             </div>
                                                 <div className='UserBabyDetails'>
                                                     <ul className='list-group'>
-                                                        <li className="badge badge-primary badge-pill">Details:</li>
-                                                        <li className='badge badge-primary badge-pill'>Name: {baby.name} </li>
-                                                        <li className="badge badge-primary badge-pill">Age: {baby.age}</li>
-                                                        <li className="badge badge-primary badge-pill">Weight: {baby.weight}</li>
-                                                        <li className="badge badge-primary badge-pill">About: {baby.about}</li>
-                                                        <li className="badge badge-primary badge-pill">Wins: {baby.wins}</li>
-                                                        <li className="badge badge-primary badge-pill">Losses: {baby.losses}</li>
+                                                        <li className="list-group-item list-group-item-action">Details:</li>
+                                                        <li className='list-group-item list-group-item-action'>Name: {baby.name} </li>
+                                                        <li className="list-group-item list-group-item-action">Age: {baby.age}</li>
+                                                        <li className="list-group-item list-group-item-action">Weight: {baby.weight}</li>
+                                                        <li className="list-group-item list-group-item-action">About: {baby.about}</li>
+                                                        <li className="list-group-item list-group-item-action">Wins: {baby.wins}</li>
+                                                        <li className="list-group-item list-group-item-action">Losses: {baby.losses}</li>
                                                     </ul>
+
+                                                    <div className='userButtons'>
+                                                        <button type="button" class="btn btn-light">Edit</button>
+                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                    </div>
                                                 </div>  
                                         </div>
                                     )

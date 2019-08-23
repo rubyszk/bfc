@@ -41,7 +41,7 @@ class Show extends React.Component {
         {this.renderRedirect()}
         <div className='container jumbotron'>
           <div className='show'>
-            <div className='square-image-container mx-auto show'>
+            <div className='img-fluid babyUser'>
               <img
                 src={this.props.currentBaby.image}
                 alt=''

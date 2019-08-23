@@ -18,7 +18,6 @@ class NavigationBar extends React.Component {render() {
                 {
                     this.props.currentUser !== null ?
                     (<Nav>
-                        <Nav.Link href="#"><Link to="#" className="nav-link">Settings</Link></Nav.Link>
                         <Nav.Link href="#"><Link to="#" className="nav-link" onClick={() => this.props.logoutUser(this.props.currentUser)}>Log Out</Link></Nav.Link>
                       </Nav>) : 
                       (
