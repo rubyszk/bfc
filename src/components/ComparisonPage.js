@@ -21,7 +21,7 @@ class ComparisonPage extends Component {
                 <div className='container jumbotron'>
                     <div className="row">
                         <div className="col-5">
-                            <div className='square-image-container square-image-container-full'>
+                            <div className='square-image-container square-image-container-full box bounce-8'>
                                 <img src={this.props.duelBabies.baby1.image} className="img-thumbnail"></img>
                             </div>
                             <hr/>
@@ -38,7 +38,7 @@ class ComparisonPage extends Component {
                             <h1>VS.</h1>
                         </div>
                         <div className="col-5">
-                            <div className='square-image-container square-image-container-full'>
+                            <div className='square-image-container square-image-container-full box bounce-7'>
                                 <img src={this.props.duelBabies.baby2.image} className="img-thumbnail"></img>
                             </div>
                             <hr/>
