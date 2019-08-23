@@ -9,12 +9,13 @@ import ComparisonPage from './components/ComparisonPage.js';
 import NewBaby from './components/NewBaby';
 import Index from './components/Index';
 import UserSignUp from './components/UserSignUp.js';
-import LogInPage from './components/LogInPage.js'
-import EditForm from './components/Edit.js'
-import UserPage from './components/UserPage.js'
+import LogInPage from './components/LogInPage.js';
+import EditForm from './components/Edit.js';
+import UserPage from './components/UserPage.js';
 import NavigationBar from './components/NavigationBar';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
+// let baseURL = 'http://localhost:3003';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends React.Component {
     this.createUser = this.createUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.deleteBaby = this.deleteBaby.bind(this);
   }
 
   // add new baby
@@ -53,21 +55,21 @@ class App extends React.Component {
 
   // create new user
   createUser(user) {
-    console.log('USER CREATED!')
+    console.log('USER CREATED!');
   }
 
   // Log In User
   loginUser(user) {
     this.setState({
       currentUser: user
-    })
+    });
   }
 
   checkSession() {
-    if(sessionStorage.getItem('currentUser')){
+    if (sessionStorage.getItem('currentUser')) {
       this.setState({
         currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
-      })
+      });
     }
   }
 
@@ -76,20 +78,27 @@ class App extends React.Component {
     sessionStorage.removeItem('currentUser');
     this.setState({
       currentUser: null
-    })
+    });
   }
 
   componentDidMount() {
     this.getBabies();
     this.getTwoRandomBabies();
     this.checkSession();
-    // this.deleteBaby();
   }
 
-  async deleteBaby() {
-    const response = await axios.delete(`${baseURL}/babies/5d5ca9dbb7f31a0017c9360e`);
+  async deleteBaby(id) {
+    const response = await axios.delete(`${baseURL}/babies/${id}`);
     const data = response.data.deletedBaby;
     console.log(data);
+
+    const filteredBabies = this.state.babies.filter(baby => {
+      return baby._id !== id;
+    });
+
+    this.setState({
+      babies: filteredBabies
+    });
   }
 
   async getBabies() {
@@ -118,7 +127,7 @@ class App extends React.Component {
     let secondResponse = null;
     let baby2 = {
       _id: baby1._id
-    }
+    };
     // make some conditions to make sure baby1 is not equal to baby2
     while (baby2._id === baby1._id) {
       secondResponse = await axios(`${baseURL}/babies/random`);
@@ -146,23 +155,22 @@ class App extends React.Component {
     await axios.put(`${baseURL}/babies/${lossBaby._id}`, updatedLossBaby);
 
     if (this.state.duelBabies.baby1._id === winBaby._id) {
-      console.log('hello')
+      console.log('hello');
       this.setState({
         duelBabies: {
           baby1: updatedWinBaby,
           baby2: updatedLossBaby
         }
-      })
+      });
     } else {
-      console.log('bye')
+      console.log('bye');
       this.setState({
         duelBabies: {
           baby1: updatedLossBaby,
           baby2: updatedWinBaby
         }
-      })
+      });
     }
-
   }
 
   async changeDuelBaby(winBaby, lossBaby) {
@@ -171,9 +179,12 @@ class App extends React.Component {
     let response = null;
     let newDuelBaby = {
       _id: winBaby._id
-    }
+    };
 
-    while (newDuelBaby._id === winBaby._id || newDuelBaby._id === lossBaby._id) {
+    while (
+      newDuelBaby._id === winBaby._id ||
+      newDuelBaby._id === lossBaby._id
+    ) {
       response = await axios(`${baseURL}/babies/random`);
       newDuelBaby = response.data.foundBabies;
     }
@@ -181,26 +192,25 @@ class App extends React.Component {
     console.log(newDuelBaby);
 
     if (this.state.duelBabies.baby1._id === lossBaby._id) {
-      console.log('hello')
+      console.log('hello');
       this.setState({
         duelBabies: {
           baby1: newDuelBaby,
           baby2: this.state.duelBabies.baby2
         }
-      })
+      });
     } else {
-      console.log('bye')
+      console.log('bye');
       this.setState({
         duelBabies: {
           baby1: this.state.duelBabies.baby1,
           baby2: newDuelBaby
         }
-      })
+      });
     }
 
     console.log(this.state.duelBabies);
   }
-
 
   handleEditChange(event) {
     this.setState({
@@ -213,40 +223,98 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-      <div>
-          <NavigationBar currentUser={this.state.currentUser} logoutUser={this.logoutUser}/>
-          <Route path='/' exact render={() => <LandingPage currentUser={this.state.currentUser}/>} />
+        <div>
+          <NavigationBar
+            currentUser={this.state.currentUser}
+            logoutUser={this.logoutUser}
+          />
+          <Route
+            path='/'
+            exact
+            render={() => <LandingPage currentUser={this.state.currentUser} />}
+          />
           <Route
             path='/babies/duel'
-            render={() => <ComparisonPage duelBabies={this.state.duelBabies} changeDuelBaby={this.changeDuelBaby} currentUser={this.state.currentUser} />}
+            render={() => (
+              <ComparisonPage
+                duelBabies={this.state.duelBabies}
+                changeDuelBaby={this.changeDuelBaby}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
           <Route
             path='/babies/show'
-            render={() => <Show currentBaby={this.state.currentBaby} getSpecificBaby={this.getSpecificBaby} currentUser={this.state.currentUser} />}
+            render={() => (
+              <Show
+                currentBaby={this.state.currentBaby}
+                getSpecificBaby={this.getSpecificBaby}
+                currentUser={this.state.currentUser}
+                deleteBaby={this.deleteBaby}
+                babies={this.state.babies}
+              />
+            )}
           />
           <Route
             path='/babies/new'
-            render={() => <NewBaby addBaby={this.addBaby} baseURL={baseURL} currentUser={this.state.currentUser} />}
+            render={() => (
+              <NewBaby
+                addBaby={this.addBaby}
+                baseURL={baseURL}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
           <Route
             path='/babies/all'
-            render={() => <Index babies={this.state.babies} getSpecificBaby={this.getSpecificBaby} currentUser={this.state.currentUser} />}
+            render={() => (
+              <Index
+                babies={this.state.babies}
+                getSpecificBaby={this.getSpecificBaby}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
           <Route
             path='/new-user'
-            render={() => <UserSignUp createUser={this.createUser} baseURL={baseURL} currentUser={this.state.currentUser} />}
+            render={() => (
+              <UserSignUp
+                createUser={this.createUser}
+                baseURL={baseURL}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
           <Route
             path='/log-in'
-            render={() => <LogInPage loginUser={this.loginUser} baseURL={baseURL} currentUser={this.state.currentUser} />}
+            render={() => (
+              <LogInPage
+                loginUser={this.loginUser}
+                baseURL={baseURL}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
           <Route
             path='/edit'
-            render={() => <EditForm currentBaby={this.state.currentBaby} baseURL={baseURL} getSpecificBaby={this.getSpecificBaby} handleEditChange={this.handleEditChange} currentUser={this.state.currentUser} />}
+            render={() => (
+              <EditForm
+                currentBaby={this.state.currentBaby}
+                baseURL={baseURL}
+                getSpecificBaby={this.getSpecificBaby}
+                handleEditChange={this.handleEditChange}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
           <Route
             path='/user'
-            render={() => <UserPage babies={this.state.babies} currentUser={this.state.currentUser} />}
+            render={() => (
+              <UserPage
+                babies={this.state.babies}
+                currentUser={this.state.currentUser}
+              />
+            )}
           />
         </div>
       </Router>
