@@ -1,11 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 import { BrowserRouter as Link } from 'react-router-dom';
 import ShowAllPage from './Index';
-
-let baseURL = 'https://bfc-backend-api.herokuapp.com';
-// let baseURL = 'https://localhost:3003';
 
 class Show extends React.Component {
   constructor(props) {
@@ -13,10 +9,8 @@ class Show extends React.Component {
     this.state = {
       toEditPage: false,
       toShowAllPage: false
-      // baby: this.props.babies
     };
     this.renderRedirect = this.renderRedirect.bind(this);
-    this.clickedDeleteBaby = this.clickedDeleteBaby.bind(this);
   }
 
   goToEditPage(id) {
@@ -38,19 +32,8 @@ class Show extends React.Component {
       return <Redirect to='/edit' />;
     } else if (this.state.toShowAllPage) {
       return <Redirect to='/babies/all' />;
-    }
+    } 
   };
-
-  async clickedDeleteBaby(id) {
-    // await axios.delete(`${baseURL}/babies/${id}`);
-
-    this.props.deleteBaby(id);
-
-    console.log('clicked delete');
-    this.setState({
-      toShowAllPage: true
-    });
-  }
 
   render() {
     return (
@@ -77,31 +60,17 @@ class Show extends React.Component {
             {
               this.props.currentUser !== null && (this.props.currentBaby.userId === this.props.currentUser._id || this.props.currentUser.isAdmin)? (
                 <button
-                  className='btn btn-primary'
-                  onClick={() => {
-                    this.goToEditPage(this.props.currentBaby._id);
-                  }}
-                  key={this.props.currentBaby._id}
-                >
-                  EDIT
-                </button>
-              ) : null}
-
-              {this.props.currentUser !== null &&
-              (this.props.currentBaby.userId === this.props.currentUser._id ||
-                this.props.currentUser.isAdmin) ? (
-                <button
-                  className='btn btn-danger'
-                  onClick={() => {
-                    this.clickedDeleteBaby(this.props.currentBaby._id);
-                  }}
-                  key={this.props.currentBaby._id}
-                >
-                  DELETE
-                </button>
-              ) : null}
+              className='btn btn-primary'
+              onClick={() => {
+                this.goToEditPage(this.props.currentBaby._id);
+              }}
+              key={this.props.currentBaby._id}
+            >
+              EDIT
+            </button>
+              ) : null
+            }
             </div>
-          ) : null}
         </div>
       </div>
     );
