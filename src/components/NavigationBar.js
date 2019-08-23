@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+
 class NavigationBar extends React.Component {render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
