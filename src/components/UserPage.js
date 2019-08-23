@@ -13,7 +13,7 @@ class UserPage extends React.Component {
                 {this.renderRedirect()}
                     <header>
                     {
-                        this.props.currentUser !== null ? (<div className='top'> Hello, {this.props.currentUser.firstName} {this.props.currentUser.lastName} </div>) : null
+                        this.props.currentUser !== null ? (<div className='top'> <h1> Hello, {this.props.currentUser.firstName} {this.props.currentUser.lastName} </h1> </div>) : null
                     }
                     </header>
 
