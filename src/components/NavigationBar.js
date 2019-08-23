@@ -21,13 +21,13 @@ class NavigationBar extends React.Component {
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
             <Nav.Link href='#'>
-              <Link to='/babies/duel' className='nav-link'>
-                Baby Duel!
+              <Link to='/babies/all' className='nav-link'>
+                Baby Fighters!
               </Link>
             </Nav.Link>
             <Nav.Link href='#'>
-              <Link to='/babies/all' className='nav-link'>
-                Baby Fighters!
+              <Link to='/babies/duel' className='nav-link'>
+                Baby Duel!
               </Link>
             </Nav.Link>
             {this.props.currentUser !== null ? (
