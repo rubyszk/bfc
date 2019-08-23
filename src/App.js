@@ -313,6 +313,8 @@ class App extends React.Component {
               <UserPage
                 babies={this.state.babies}
                 currentUser={this.state.currentUser}
+                deleteBaby={this.deleteBaby}
+                currentBaby={this.state.currentBaby}
               />
             )}
           />
