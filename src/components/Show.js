@@ -54,13 +54,6 @@ class Show extends React.Component {
             <h3>Wins: {this.props.currentBaby.wins}</h3>
             <h3>Losses: {this.props.currentBaby.losses}</h3>
             <h3>Bio: {this.props.currentBaby.about}</h3>
-<<<<<<< HEAD
-            <a href='/babies/all'>
-              <button class='btn btn-dark'>Back</button>
-            </a>
-            <button
-              className='btn btn-primary edit'
-=======
             <button className="btn btn-dark" onClick={() => {
               this.goToShowAllPage();
             }}>Back</button>
@@ -68,7 +61,6 @@ class Show extends React.Component {
               this.props.currentUser !== null && (this.props.currentBaby.userId === this.props.currentUser._id || this.props.currentUser.isAdmin)? (
                 <button
               className='btn btn-primary'
->>>>>>> 2d8e85d3f38f4e41ff0b25949c73c29d06b702fa
               onClick={() => {
                 this.goToEditPage(this.props.currentBaby._id);
               }}

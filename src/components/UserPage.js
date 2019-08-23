@@ -29,6 +29,7 @@ class UserPage extends React.Component {
                                                 <div className='UserBabyDetails'>
                                                     <ul className='list-group'>
                                                         <li className="badge badge-primary badge-pill">Details:</li>
+                                                        <li className='badge badge-primary badge-pill'>Name: {baby.name} </li>
                                                         <li className="badge badge-primary badge-pill">Age: {baby.age}</li>
                                                         <li className="badge badge-primary badge-pill">Weight: {baby.weight}</li>
                                                         <li className="badge badge-primary badge-pill">About: {baby.about}</li>
