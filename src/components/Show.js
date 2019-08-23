@@ -57,6 +57,7 @@ class Show extends React.Component {
                   className='img-thumbnail show'
                 />
               </div>
+
               <div className="info">
               <h1>{this.props.currentBaby.name}</h1>
               <h3 id="age">Age:</h3> <h4> {this.props.currentBaby.age} months </h4>
@@ -68,6 +69,7 @@ class Show extends React.Component {
               this.goToShowAllPage();
               }}>Back</button>
             </div>
+
               {this.props.currentUser !== null &&
               (this.props.currentBaby.userId === this.props.currentUser._id ||
                 this.props.currentUser.isAdmin) ? (
