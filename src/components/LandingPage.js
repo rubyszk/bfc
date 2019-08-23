@@ -10,14 +10,13 @@ class LandingPage extends Component {
     }
   };
   render() {
-    // console.log(this.props);
     return (
       <div className='landing'>
       {this.renderRedirect()}
         <div className="d-flex align-items-center">
           <div className='jumbotron container'>
             <div className='main d-flex justify-content-center'>
-              <h1 class="display-3"> RUMBLE </h1>
+              <h1 class="display-1"> Rumble </h1>
             </div>
 
             <div className='d-flex justify-content-around'>
