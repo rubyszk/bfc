@@ -15,6 +15,7 @@ import UserPage from './components/UserPage.js';
 import NavigationBar from './components/NavigationBar';
 
 let baseURL = 'https://bfc-backend-api.herokuapp.com';
+// let baseURL = 'http://localhost:3003';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends React.Component {
     this.createUser = this.createUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.deleteBaby = this.deleteBaby.bind(this);
   }
 
   // add new baby
@@ -64,10 +66,10 @@ class App extends React.Component {
   }
 
   checkSession() {
-    if(sessionStorage.getItem('currentUser')){
+    if (sessionStorage.getItem('currentUser')) {
       this.setState({
         currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
-      })
+      });
     }
   }
 
@@ -83,15 +85,20 @@ class App extends React.Component {
     this.getBabies();
     this.getTwoRandomBabies();
     this.checkSession();
-    // this.deleteBaby();
   }
 
-  async deleteBaby() {
-    const response = await axios.delete(
-      `${baseURL}/babies/5d5ca9dbb7f31a0017c9360e`
-    );
+  async deleteBaby(id) {
+    const response = await axios.delete(`${baseURL}/babies/${id}`);
     const data = response.data.deletedBaby;
     console.log(data);
+
+    const filteredBabies = this.state.babies.filter(baby => {
+      return baby._id !== id;
+    });
+
+    this.setState({
+      babies: filteredBabies
+    });
   }
 
   async getBabies() {
@@ -243,6 +250,8 @@ class App extends React.Component {
                 currentBaby={this.state.currentBaby}
                 getSpecificBaby={this.getSpecificBaby}
                 currentUser={this.state.currentUser}
+                deleteBaby={this.deleteBaby}
+                babies={this.state.babies}
               />
             )}
           />
