@@ -1,5 +1,4 @@
 import React from 'react';
-import NavigationBar from './NavigationBar';
 import { Redirect } from 'react-router-dom';
 import { BrowserRouter as Link } from 'react-router-dom';
 import ShowAllPage from './Index';
@@ -8,7 +7,8 @@ class Show extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toEditPage: false
+      toEditPage: false,
+      toShowAllPage: false
     };
     this.renderRedirect = this.renderRedirect.bind(this);
   }
@@ -21,9 +21,17 @@ class Show extends React.Component {
     this.props.getSpecificBaby(id);
   }
 
+  goToShowAllPage() {
+    this.setState({
+      toShowAllPage: true
+    });
+  }
+
   renderRedirect = () => {
     if (this.state.toEditPage) {
       return <Redirect to='/edit' />;
+    } else if (this.state.toShowAllPage) {
+      return <Redirect to='/babies/all' />;
     }
   };
 
@@ -31,7 +39,6 @@ class Show extends React.Component {
     return (
       <div>
         {this.renderRedirect()}
-        <NavigationBar />
         <div className='container jumbotron'>
           <div className='show'>
             <div className='square-image-container mx-auto'>
@@ -47,18 +54,27 @@ class Show extends React.Component {
             <h3>Wins: {this.props.currentBaby.wins}</h3>
             <h3>Losses: {this.props.currentBaby.losses}</h3>
             <h3>Bio: {this.props.currentBaby.about}</h3>
-            <a href='/babies/all'>
-              <button class='btn btn-dark'>Back</button>
-            </a>
             <button
-              className='btn btn-primary edit'
+              className='btn btn-dark'
               onClick={() => {
-                this.goToEditPage(this.props.currentBaby._id);
+                this.goToShowAllPage();
               }}
-              key={this.props.currentBaby._id}
             >
-              EDIT
+              Back
             </button>
+            {this.props.currentUser !== null &&
+            (this.props.currentBaby.userId === this.props.currentUser._id ||
+              this.props.currentUser.isAdmin) ? (
+              <button
+                className='btn btn-primary'
+                onClick={() => {
+                  this.goToEditPage(this.props.currentBaby._id);
+                }}
+                key={this.props.currentBaby._id}
+              >
+                EDIT
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

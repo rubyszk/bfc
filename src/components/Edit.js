@@ -1,9 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-
-import NavigationBar from './NavigationBar';
-
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +38,6 @@ class EditForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <NavigationBar />
         <div className='jumbotron container'>
           <h3>Edit Baby</h3>
           <Form onSubmit={this.handleSubmit}>
