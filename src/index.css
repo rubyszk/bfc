@@ -23,3 +23,7 @@ body  {
   min-width: 45%;
 }
 
+.show  {
+  width: 100%;
+  margin: 0 auto;
+}
