@@ -19,7 +19,9 @@ class UserPage extends React.Component {
 
                     <body>
                         <div>
-                            {this.props.babies.map((baby) => {
+                            {
+                                this.props.currentUser !== null ?
+                                (this.props.babies.map((baby) => {
                                 if(baby.userId === this.props.currentUser._id){
                                     return(
                                         <div className='MainUser'>
@@ -39,7 +41,8 @@ class UserPage extends React.Component {
                                         </div>
                                     )
                                 }
-                            })}
+                            })) : null
+                        }
                         </div>
                     </body>
             </div>
