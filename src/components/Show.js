@@ -57,33 +57,25 @@ class Show extends React.Component {
       <div>
         {this.renderRedirect()}
         <div className='container jumbotron'>
-          {this.props.currentBaby ? (
-            <div className='show'>
-              <div className='square-image-container mx-auto'>
-                <img
-                  src={this.props.currentBaby.image}
-                  alt=''
-                  className='img-thumbnail'
-                />
-              </div>
-
-              <h1>{this.props.currentBaby.name}</h1>
-              <h3>Age: {this.props.currentBaby.age} months</h3>
-              <h3>Weight: {this.props.currentBaby.weight}</h3>
-              <h3>Wins: {this.props.currentBaby.wins}</h3>
-              <h3>Losses: {this.props.currentBaby.losses}</h3>
-              <h3>Bio: {this.props.currentBaby.about}</h3>
-              <button
-                className='btn btn-dark'
-                onClick={() => {
-                  this.goToShowAllPage();
-                }}
-              >
-                Back
-              </button>
-              {this.props.currentUser !== null &&
-              (this.props.currentBaby.userId === this.props.currentUser._id ||
-                this.props.currentUser.isAdmin) ? (
+          <div className='show'>
+            <div className='img-fluid babyUser'>
+              <img
+                src={this.props.currentBaby.image}
+                alt=''
+                className='img-thumbnail show'
+              />
+            </div>
+            <h1>{this.props.currentBaby.name}</h1>
+            <h3>Age: {this.props.currentBaby.age} months</h3>
+            <h3>Weight: {this.props.currentBaby.weight}</h3>
+            <h3>Wins: {this.props.currentBaby.wins}</h3>
+            <h3>Losses: {this.props.currentBaby.losses}</h3>
+            <h3>Bio: {this.props.currentBaby.about}</h3>
+            <button className="btn btn-dark" onClick={() => {
+              this.goToShowAllPage();
+            }}>Back</button>
+            {
+              this.props.currentUser !== null && (this.props.currentBaby.userId === this.props.currentUser._id || this.props.currentUser.isAdmin)? (
                 <button
                   className='btn btn-primary'
                   onClick={() => {
