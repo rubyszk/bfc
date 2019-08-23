@@ -48,15 +48,17 @@ class Show extends React.Component {
                 className='img-thumbnail show'
               />
             </div>
-            <h1>{this.props.currentBaby.name}</h1>
-            <h3>Age: {this.props.currentBaby.age} months</h3>
-            <h3>Weight: {this.props.currentBaby.weight}</h3>
-            <h3>Wins: {this.props.currentBaby.wins}</h3>
-            <h3>Losses: {this.props.currentBaby.losses}</h3>
-            <h3>Bio: {this.props.currentBaby.about}</h3>
-            <button className="btn btn-dark" onClick={() => {
+            <div className="info">
+              <h1>{this.props.currentBaby.name}</h1>
+              <h3 id="age">Age:</h3> <h4> {this.props.currentBaby.age} months </h4>
+              <h3>Weight:</h3> <h4> {this.props.currentBaby.weight} </h4>
+              <h3>About:</h3> <h4> {this.props.currentBaby.about} </h4>
+              <h3>Wins: </h3> <h4>{this.props.currentBaby.wins}</h4>
+              <h3>Losses:</h3> <h4> {this.props.currentBaby.losses}</h4>
+              <button id="back" className="btn btn-dark" onClick={() => {
               this.goToShowAllPage();
-            }}>Back</button>
+              }}>Back</button>
+            </div>
             {
               this.props.currentUser !== null && (this.props.currentBaby.userId === this.props.currentUser._id || this.props.currentUser.isAdmin)? (
                 <button
