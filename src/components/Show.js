@@ -75,6 +75,20 @@ class Show extends React.Component {
                 EDIT
               </button>
             ) : null}
+
+            {this.props.currentUser !== null &&
+            (this.props.currentBaby.userId === this.props.currentUser._id ||
+              this.props.currentUser.isAdmin) ? (
+              <button
+                className='btn btn-danger'
+                onClick={() => {
+                  // this.goToEditPage(this.props.currentBaby._id);
+                }}
+                key={this.props.currentBaby._id}
+              >
+                DELETE
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
