@@ -72,6 +72,12 @@ class App extends React.Component {
         currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
       });
     }
+
+    if (sessionStorage.getItem('currentBaby')) {
+      this.setState({
+        currentBaby: JSON.parse(sessionStorage.getItem('currentBaby'))
+      });
+    }
   }
 
   // Log out User
@@ -131,9 +137,11 @@ class App extends React.Component {
   }
 
   async getSpecificBaby(id) {
+    sessionStorage.removeItem('currentBaby');
     console.log(id);
     const response = await axios(`${baseURL}/babies/${id}`);
     const data = response.data.foundBaby;
+    sessionStorage.setItem('currentBaby', JSON.stringify(data));
     this.setState({
       currentBaby: data
     });
