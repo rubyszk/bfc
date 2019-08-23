@@ -42,6 +42,7 @@ class App extends React.Component {
     this.loginUser = this.loginUser.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
     this.deleteBaby = this.deleteBaby.bind(this);
+    this.updateBaby = this.updateBaby.bind(this);
   }
 
   // add new baby
@@ -99,6 +100,24 @@ class App extends React.Component {
     this.setState({
       babies: filteredBabies
     });
+  }
+
+  async updateBaby() {
+    const response = await axios.put(
+      `${baseURL}/babies/${this.state.currentBaby._id}`, this.state.currentBaby
+    );
+
+    const updatedBabies = this.state.babies.map((baby) => {
+      if(baby._id === this.state.currentBaby._id){
+        return this.state.currentBaby
+      } else {
+        return baby
+      }
+    })
+
+    this.setState({
+      babies: updatedBabies
+    })
   }
 
   async getBabies() {
@@ -213,10 +232,10 @@ class App extends React.Component {
   }
 
   handleEditChange(event) {
+    const currentBabyCopy = this.state.currentBaby;
+    currentBabyCopy[event.currentTarget.name] = event.currentTarget.value;
     this.setState({
-      currentBaby: {
-        [event.currentTarget.name]: event.currentTarget.value
-      }
+      currentBaby: currentBabyCopy
     });
   }
 
@@ -303,6 +322,7 @@ class App extends React.Component {
                 baseURL={baseURL}
                 getSpecificBaby={this.getSpecificBaby}
                 handleEditChange={this.handleEditChange}
+                updateBaby={this.updateBaby}
                 currentUser={this.state.currentUser}
               />
             )}
@@ -313,6 +333,8 @@ class App extends React.Component {
               <UserPage
                 babies={this.state.babies}
                 currentUser={this.state.currentUser}
+                deleteBaby={this.deleteBaby}
+                currentBaby={this.state.currentBaby}
               />
             )}
           />

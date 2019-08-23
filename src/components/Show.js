@@ -32,23 +32,32 @@ class Show extends React.Component {
       return <Redirect to='/edit' />;
     } else if (this.state.toShowAllPage) {
       return <Redirect to='/babies/all' />;
-    } 
+    }
   };
+
+  async clickedDeleteBaby(id) {
+    this.props.deleteBaby(id);
+    console.log('clicked delete');
+    this.setState({
+      toShowAllPage: true
+    });
+  }
 
   render() {
     return (
       <div>
         {this.renderRedirect()}
         <div className='container jumbotron'>
-          <div className='show'>
-            <div className='img-fluid babyUser'>
-              <img
-                src={this.props.currentBaby.image}
-                alt=''
-                className='img-thumbnail show'
-              />
-            </div>
-            <div className="info">
+          {this.props.currentBaby ? (
+            <div className='show'>
+              <div className='img-fluid babyUser'>
+                <img
+                  src={this.props.currentBaby.image}
+                  alt=''
+                  className='img-thumbnail show'
+                />
+              </div>
+              <div className="info">
               <h1>{this.props.currentBaby.name}</h1>
               <h3 id="age">Age:</h3> <h4> {this.props.currentBaby.age} months </h4>
               <h3>Weight:</h3> <h4> {this.props.currentBaby.weight} </h4>
@@ -59,20 +68,35 @@ class Show extends React.Component {
               this.goToShowAllPage();
               }}>Back</button>
             </div>
-            {
-              this.props.currentUser !== null && (this.props.currentBaby.userId === this.props.currentUser._id || this.props.currentUser.isAdmin)? (
+              {this.props.currentUser !== null &&
+              (this.props.currentBaby.userId === this.props.currentUser._id ||
+                this.props.currentUser.isAdmin) ? (
                 <button
-              className='btn btn-primary'
-              onClick={() => {
-                this.goToEditPage(this.props.currentBaby._id);
-              }}
-              key={this.props.currentBaby._id}
-            >
-              EDIT
-            </button>
-              ) : null
-            }
+                  className='btn btn-primary'
+                  onClick={() => {
+                    this.goToEditPage(this.props.currentBaby._id);
+                  }}
+                  key={this.props.currentBaby._id}
+                >
+                  EDIT
+                </button>
+              ) : null}
+
+              {this.props.currentUser !== null &&
+              (this.props.currentBaby.userId === this.props.currentUser._id ||
+                this.props.currentUser.isAdmin) ? (
+                <button
+                  className='btn btn-danger'
+                  onClick={() => {
+                    this.clickedDeleteBaby(this.props.currentBaby._id);
+                  }}
+                  key={this.props.currentBaby._id}
+                >
+                  DELETE
+                </button>
+              ) : null}
             </div>
+          ) : null}
         </div>
       </div>
     );
