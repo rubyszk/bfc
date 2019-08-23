@@ -18,7 +18,7 @@ class LandingPage extends Component {
               {
                 this.props.currentUser !== null ?
                 <div className='d-flex justify-content-around'>
-                    <Link to='/babies/duel'><button type="button" class="btn btn-primary">Enter</button></Link>
+                    <Link to='/babies/duel'><button type="button" class="btn btn-primary btn-lg"> Enter Here </button></Link>
                 </div>
               :
                 <div className='d-flex justify-content-around'>
