@@ -11,6 +11,14 @@ h1 {
   font-family: 'Shrikhand', cursive;
 }
 
+h3 {
+  font-weight: 700;
+}
+
+h4 {
+  margin-bottom: 20px;
+}
+
 .navbar-brand {
   font-family: 'Shrikhand', cursive;
   font-size: 24px;
@@ -19,6 +27,19 @@ h1 {
 .top {
   text-align: center;
   margin: 50px 0px;
+}
+
+#age {
+  margin-top: 20px;
+}
+
+.info {
+  margin-top: 50px;
+  margin-left: 105px;
+}
+
+#back {
+  margin-top: 20px;
 }
 
 #landing {
