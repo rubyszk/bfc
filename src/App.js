@@ -104,20 +104,21 @@ class App extends React.Component {
 
   async updateBaby() {
     const response = await axios.put(
-      `${baseURL}/babies/${this.state.currentBaby._id}`, this.state.currentBaby
+      `${baseURL}/babies/${this.state.currentBaby._id}`,
+      this.state.currentBaby
     );
 
-    const updatedBabies = this.state.babies.map((baby) => {
-      if(baby._id === this.state.currentBaby._id){
-        return this.state.currentBaby
+    const updatedBabies = this.state.babies.map(baby => {
+      if (baby._id === this.state.currentBaby._id) {
+        return this.state.currentBaby;
       } else {
-        return baby
+        return baby;
       }
-    })
+    });
 
     this.setState({
       babies: updatedBabies
-    })
+    });
   }
 
   async getBabies() {
@@ -335,6 +336,7 @@ class App extends React.Component {
                 currentUser={this.state.currentUser}
                 deleteBaby={this.deleteBaby}
                 currentBaby={this.state.currentBaby}
+                getSpecificBaby={this.getSpecificBaby}
               />
             )}
           />
