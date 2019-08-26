@@ -252,7 +252,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <NavigationBar
+        <NavigationBar
             currentUser={this.state.currentUser}
             logoutUser={this.logoutUser}
           />

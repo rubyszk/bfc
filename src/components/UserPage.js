@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+// import NavigationBar from './NavigationBar.js'
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -27,6 +28,10 @@ class UserPage extends React.Component {
   render() {
     return (
       <div>
+        {/* <NavigationBar
+            currentUser={this.state.currentUser}
+            logoutUser={this.logoutUser}
+          /> */}
         {this.renderRedirect()}
         <header>
           {this.props.currentUser !== null ? (
@@ -86,6 +91,7 @@ class UserPage extends React.Component {
                                 this.goToEdit(baby._id);
                               }}
                               type='button'
+                              id="edit"
                               class='btn btn-light'
                               key={this.props.currentBaby._id}
                             >
@@ -95,6 +101,7 @@ class UserPage extends React.Component {
                             <button
                               type='button'
                               class='btn btn-danger'
+                              id="danger"
                               onClick={() => {
                                 this.props.deleteBaby(baby._id);
                               }}

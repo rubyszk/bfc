@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 class NavigationBar extends React.Component {render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Nav.Link href="#"><Link to="/" className="navbar-brand" data-toggle="collapse" data-target="#navbar" ui-sref="home">Rumble</Link></Nav.Link>
+            <Nav.Link href="#"><Link to="/" className="navbar-brand" data-toggle="collapse" data-target="#navbar" ui-sref="home" id="rumble">Rumble</Link></Nav.Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
@@ -19,7 +19,7 @@ class NavigationBar extends React.Component {render() {
                 {
                     this.props.currentUser !== null ?
                     (<Nav>
-                        <Nav.Link href='#'><Link to='/user' className='nav-link'>Your Babies</Link></Nav.Link>
+                        <Nav.Link href='#'><Link to='/user' className='nav-link'>Your Fighters</Link></Nav.Link>
                         <Nav.Link href="#"><Link to="#" className="nav-link" onClick={() => this.props.logoutUser(this.props.currentUser)}>Log Out</Link></Nav.Link>
                       </Nav>) : 
                         

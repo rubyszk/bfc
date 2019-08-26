@@ -50,8 +50,8 @@ class NewBaby extends React.Component {
             <div>
                 <div className='jumbotron container'>
                 {this.renderRedirect()}
-                        <h1> Sign Up New User </h1>
-                        <p>Please fill out the following to create an account</p>
+                        <h1> Sign Up </h1>
+                        <p>Fill out the following to create an account</p>
                         <form onSubmit={this.handleUserCreation}>
                             <div className="form-group">
                                 <label for='firstName'><b>First Name</b></label>

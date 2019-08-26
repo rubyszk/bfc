@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+// import NavigationBar from './NavigationBar.js'
 
 class ComparisonPage extends Component {
     constructor(props){

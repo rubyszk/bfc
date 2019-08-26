@@ -2,35 +2,27 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './LandingPage.css'
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 class LandingPage extends Component {
   render() {
     return (
       <div className='landing'>
-        <div className="d-flex align-items-center">
-          <div className='jumbotron container'>
-            <div className='main d-flex justify-content-center'>
-              <h1 class="display-1"> Rumble </h1>
-            </div>
-              <h2> Showdown to Find the Cutest Baby! </h2>
-              <h5> Disclaimer: <i>No Babies Were Harmed in the Making of this Project</i></h5>
-
+        <div class="header">
+              <h1 class="head">Let's get ready to...</h1>
+              <h1 class="logo"> Rumble </h1>
+        </div>
               {
                 this.props.currentUser !== null ?
                 <div className='d-flex justify-content-around'>
-                    <Link to='/babies/duel'><button type="button" class="btn btn-primary btn-lg"> Enter Here </button></Link>
+                    <Link to='/babies/duel'><button type="button" class="btn btn-secondary btn-lg btn-block"> Enter </button></Link>
                 </div>
               :
-                <div className='d-flex justify-content-around'>
-                  <Link to='/babies/duel'><button type="button" class="btn btn-primary">Enter</button></Link>
-                  <Link to='/log-in'><button type="button" class="btn btn-primary">Log In</button></Link>
-                  <Link to='/new-user'><button type="button" class="btn btn-primary">Register</button></Link>
+              <div id="links">
+                  <Link to='/babies/duel'><button type="button" id="btn1" class="btn btn-secondary btn-lg btn-block" >Enter</button></Link>
               </div>
-            }
-
-          </div>
-        </div>
-      </div>  
+             }
+      </div>
     );
   }
 }

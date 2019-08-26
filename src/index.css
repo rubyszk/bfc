@@ -2,10 +2,14 @@
 
 
 body  {
-  /* background: url('https://www.sickchirpse.com/wp-content/uploads/2016/10/baby-fight-club.jpg') no-repeat center center fixed; */
   background-size: cover;
   font-family: 'Roboto', sans-serif;
 }
+
+#rumble {
+  text-shadow: 2px 2px black;
+}
+
 
 h1 {
   font-family: 'Shrikhand', cursive;
@@ -59,4 +63,13 @@ h4 {
 .show  {
   width: 100%;
   margin: 0 auto;
+}
+
+#edit {
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+#danger {
+  margin-top: 20px;
 }

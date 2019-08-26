@@ -67,7 +67,7 @@ class NewBaby extends React.Component {
             <div>
             {this.renderRedirect()}
             <div className="jumbotron container">
-                <h3>Add a New Baby</h3>
+                <h3>Add a New Fighter</h3>
                 <Form onSubmit={this.handleSubmit}>
                     <hr />
                     <Form.Group as={Row}>
