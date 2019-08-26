@@ -27,16 +27,17 @@ class ComparisonPage extends Component {
                             </div>
                             <hr/>
                             <div className="d-flex flex-column align-items-center">
-                                <h4>{this.props.duelBabies.baby1.name}</h4>
-                                <h5>W:{this.props.duelBabies.baby1.wins} / L:{this.props.duelBabies.baby1.losses}</h5>
+                                <h3>{this.props.duelBabies.baby1.name}, {this.props.duelBabies.baby1.age} mo</h3>
+                                <h4>{this.props.duelBabies.baby1.weight}</h4>
+                                <h5>W: {this.props.duelBabies.baby1.wins} / L: {this.props.duelBabies.baby1.losses}</h5>
                             </div>
                             <hr/>
                             <div className="d-flex flex-column align-items-center">
-                                <button type="button" class="btn btn-primary btn-lg" onClick={() => {this.chooseBaby(this.props.duelBabies.baby1, this.props.duelBabies.baby2)}}>Vote for {this.props.duelBabies.baby1.name}</button>
+                                <button type="button" class="btn btn-outline-dark" onClick={() => {this.chooseBaby(this.props.duelBabies.baby1, this.props.duelBabies.baby2)}}>Vote for {this.props.duelBabies.baby1.name}</button>
                             </div>
                         </div>
                         <div className="col-2 d-flex justify-content-center align-items-center">
-                            <h1>VS.</h1>
+                            <h1 id="vs">VS.</h1>
                         </div>
                         <div className="col-5">
                             <div className='square-image-container square-image-container-full'>
@@ -44,12 +45,13 @@ class ComparisonPage extends Component {
                             </div>
                             <hr/>
                             <div className="d-flex flex-column align-items-center">
-                                <h4>{this.props.duelBabies.baby2.name}</h4>
-                                <h5>W:{this.props.duelBabies.baby2.wins} / L:{this.props.duelBabies.baby2.losses}</h5>
+                                <h3>{this.props.duelBabies.baby2.name}, {this.props.duelBabies.baby2.age} mo</h3> 
+                                <h4>{this.props.duelBabies.baby2.weight}</h4>
+                                <h5>W: {this.props.duelBabies.baby2.wins} / L: {this.props.duelBabies.baby2.losses}</h5>
                             </div>
                             <hr/>
                             <div className="d-flex flex-column align-items-center">
-                                <button type="button" class="btn btn-primary btn-lg" onClick={() => {this.chooseBaby(this.props.duelBabies.baby2, this.props.duelBabies.baby1)}}>Vote for {this.props.duelBabies.baby2.name}</button>
+                                <button type="button" class="btn btn-outline-dark" onClick={() => {this.chooseBaby(this.props.duelBabies.baby2, this.props.duelBabies.baby1)}}>Vote for {this.props.duelBabies.baby2.name}</button>
                             </div>
                         </div>
                     </div>

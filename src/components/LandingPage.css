@@ -4,11 +4,17 @@
     height: 100vh;
 }
 
+
 .header {
     text-align: center;
     padding-top: 50px;
     color: white;
     text-shadow: 5px 5px black;
+}
+
+h6 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
 }
   
 h2, h5  {
@@ -16,7 +22,7 @@ h2, h5  {
 }
 
 .logo {
-    font-size: 175px;
+    font-size: 10em;
 }
 
 .showButton {
@@ -43,3 +49,8 @@ h2, h5  {
     text-align: center;
     width: 300px;
 }
+
+h6 {
+
+}
+
