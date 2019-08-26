@@ -47,7 +47,7 @@ class Index extends React.Component {
                     }}
                     key={baby._id}
                   >
-                    <img src={baby.image} className='img-thumbnail' />
+                    <img src={baby.image} className='img-thumbnail' style={{cursor: 'pointer'}}  />
                   </div>
                 );
               })}
