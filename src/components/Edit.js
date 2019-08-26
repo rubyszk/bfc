@@ -22,7 +22,7 @@ class EditForm extends React.Component {
 
   renderRedirect = () => {
     if (this.state.toShowPage) {
-      return <Redirect to='/babies/show' />;
+      return <Redirect to='/user' />;
     }
   };
 
