@@ -1,13 +1,45 @@
 .landing  {
-    background: url('https://www.sickchirpse.com/wp-content/uploads/2016/10/baby-fight-club.jpg') no-repeat center center fixed;
+    background: url('https://media.giphy.com/media/eN5DTcJ2wURpt3wGvH/giphy.gif');
     background-size: cover;
     height: 100vh;
+}
+
+.header {
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+    text-shadow: 5px 5px black;
 }
   
 h2, h5  {
     text-align: center;
 }
 
+.logo {
+    font-size: 175px;
+}
+
 .showButton {
     display: inline;
+}
+
+#links {
+    margin-left: 35%;
+}
+
+#btn1 {
+    text-align: center;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+#btn2 {
+    text-align: center;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+#btn3 {
+    text-align: center;
+    width: 300px;
 }

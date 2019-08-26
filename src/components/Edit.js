@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
+import NavigationBar from './NavigationBar.js'
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,6 @@ class EditForm extends React.Component {
     this.props.updateBaby();
   }
 
-
   renderRedirect = () => {
     if (this.state.toShowPage) {
       return <Redirect to='/babies/show' />;
@@ -32,7 +32,7 @@ class EditForm extends React.Component {
       {this.renderRedirect()}
         <form onSubmit={this.handleSubmit}>
           <div className='jumbotron container'>
-            <h3>Edit Baby</h3>
+            <h3>Edit {this.props.currentBaby.name} </h3>
             <Form onSubmit={this.handleSubmit}>
               <hr />
               <Form.Group as={Row}>
