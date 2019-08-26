@@ -65,15 +65,12 @@ class Show extends React.Component {
               <h3>About:</h3> <h4> {this.props.currentBaby.about} </h4>
               <h3>Wins: </h3> <h4>{this.props.currentBaby.wins}</h4>
               <h3>Losses:</h3> <h4> {this.props.currentBaby.losses}</h4>
-              <button id="back" className="btn btn-dark showButton" onClick={() => {
-              this.goToShowAllPage();
-              }}>Back</button>
             </div>
 
               {this.props.currentUser !== null &&
               (this.props.currentBaby.userId === this.props.currentUser._id ||
                 this.props.currentUser.isAdmin) ? (
-                <button
+                <button id="editBaby"
                   className='btn btn-primary showButton'
                   onClick={() => {
                     this.goToEditPage(this.props.currentBaby._id);
@@ -87,7 +84,7 @@ class Show extends React.Component {
               {this.props.currentUser !== null &&
               (this.props.currentBaby.userId === this.props.currentUser._id ||
                 this.props.currentUser.isAdmin) ? (
-                <button
+                <button id="deleteBaby"
                   className='btn btn-danger showButton'
                   onClick={() => {
                     this.clickedDeleteBaby(this.props.currentBaby._id);
@@ -99,6 +96,10 @@ class Show extends React.Component {
               ) : null}
             </div>
           ) : null}
+
+          <button id="goBack" className="btn btn-dark showButton" onClick={() => {
+              this.goToShowAllPage();
+              }}>Back</button>
         </div>
       </div>
     );

@@ -6,6 +6,7 @@ body  {
   font-family: 'Roboto', sans-serif;
 }
 
+
 #rumble {
   text-shadow: 2px 2px black;
 }
@@ -27,6 +28,7 @@ h4 {
   font-family: 'Shrikhand', cursive;
   font-size: 24px;
 }
+
 
 .top {
   text-align: center;
@@ -72,4 +74,22 @@ h4 {
 
 #danger {
   margin-top: 20px;
+}
+
+#editBaby {
+  margin: 15px 25px 0px 105px;
+}
+
+#deleteBaby {
+  margin-top: 15px;
+
+}
+
+#goBack {
+  margin-left: 105px;
+  margin-top: 25px;
+}
+
+#vs {
+  color: #870101
 }

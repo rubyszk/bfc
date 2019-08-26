@@ -5,13 +5,17 @@ import './LandingPage.css'
 
 
 class LandingPage extends Component {
+  
+  componentDidMount() {
+    window.scrollTo(0,5000)
+  }
+  
   render() {
     return (
       <div className='landing'>
         <div class="header">
               <h1 class="head">Let's get ready to...</h1>
               <h1 class="logo"> Rumble </h1>
-        </div>
               {
                 this.props.currentUser !== null ?
                 <div className='d-flex justify-content-around'>
@@ -22,6 +26,7 @@ class LandingPage extends Component {
                   <Link to='/babies/duel'><button type="button" id="btn1" class="btn btn-secondary btn-lg btn-block" >Enter</button></Link>
               </div>
              }
+             </div>
       </div>
     );
   }
