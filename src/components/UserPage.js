@@ -91,8 +91,8 @@ class UserPage extends React.Component {
                                 this.goToEdit(baby._id);
                               }}
                               type='button'
-                              id="edit"
-                              class='btn btn-light'
+                              id='edit'
+                              class='btn btn-primary'
                               key={this.props.currentBaby._id}
                             >
                               Edit
@@ -101,7 +101,7 @@ class UserPage extends React.Component {
                             <button
                               type='button'
                               class='btn btn-danger'
-                              id="danger"
+                              id='danger'
                               onClick={() => {
                                 this.props.deleteBaby(baby._id);
                               }}
