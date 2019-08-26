@@ -100,7 +100,7 @@ class Show extends React.Component {
                 this.goToShowAllPage();
               }}
               >
-                Back</button>
+                BACK</button>
               </div>
             </div>
           ) : null}
