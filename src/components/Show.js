@@ -81,6 +81,7 @@ class Show extends React.Component {
                 </button>
               ) : null}
 
+
               {this.props.currentUser !== null &&
               (this.props.currentBaby.userId === this.props.currentUser._id ||
                 this.props.currentUser.isAdmin) ? (
@@ -94,6 +95,14 @@ class Show extends React.Component {
                   DELETE
                 </button>
               ) : null}
+              
+              <button 
+                className="btn btn-dark showButton" onClick={() => {
+                this.goToShowAllPage();
+              }}
+              >
+                Back</button>
+              </div>
             </div>
           ) : null}
 

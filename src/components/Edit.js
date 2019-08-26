@@ -1,35 +1,35 @@
 import React from 'react';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
-import NavigationBar from './NavigationBar.js'
+import { Redirect } from 'react-router-dom';
+import NavigationBar from './NavigationBar.js';
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       toShowPage: false
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     this.setState({
       toShowPage: true
-    })
+    });
     this.props.updateBaby();
   }
 
   renderRedirect = () => {
     if (this.state.toShowPage) {
-      return <Redirect to='/babies/show' />;
+      return <Redirect to='/user' />;
     }
   };
 
   render() {
     return (
       <div>
-      {this.renderRedirect()}
+        {this.renderRedirect()}
         <form onSubmit={this.handleSubmit}>
           <div className='jumbotron container'>
             <h3>Edit {this.props.currentBaby.name} </h3>
@@ -153,7 +153,6 @@ class EditForm extends React.Component {
             </Form>
           </div>
         </form>
-      
       </div>
     );
   }

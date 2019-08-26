@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import './LandingPage.css'
-
+import './LandingPage.css';
 
 class LandingPage extends Component {
   
@@ -27,6 +26,7 @@ class LandingPage extends Component {
               </div>
              }
              </div>
+
       </div>
     );
   }
