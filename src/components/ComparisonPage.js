@@ -33,7 +33,7 @@ class ComparisonPage extends Component {
                             </div>
                             <hr/>
                             <div className="d-flex flex-column align-items-center">
-                                <button type="button" class="btn btn-outline-dark" onClick={() => {this.chooseBaby(this.props.duelBabies.baby1, this.props.duelBabies.baby2)}}>Vote for {this.props.duelBabies.baby1.name}</button>
+                                <button type="button" class="btn btn-info" onClick={() => {this.chooseBaby(this.props.duelBabies.baby1, this.props.duelBabies.baby2)}}>Vote for {this.props.duelBabies.baby1.name}</button>
                             </div>
                         </div>
                         <div className="col-2 d-flex justify-content-center align-items-center">
@@ -51,7 +51,7 @@ class ComparisonPage extends Component {
                             </div>
                             <hr/>
                             <div className="d-flex flex-column align-items-center">
-                                <button type="button" class="btn btn-outline-dark" onClick={() => {this.chooseBaby(this.props.duelBabies.baby2, this.props.duelBabies.baby1)}}>Vote for {this.props.duelBabies.baby2.name}</button>
+                                <button type="button" class="btn btn-info" onClick={() => {this.chooseBaby(this.props.duelBabies.baby2, this.props.duelBabies.baby1)}}>Vote for {this.props.duelBabies.baby2.name}</button>
                             </div>
                         </div>
                     </div>
