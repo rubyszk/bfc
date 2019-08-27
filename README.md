@@ -1,8 +1,8 @@
 # RUMBLE 
 
-A very fun app
+RUMBLE is an app that was made to pitch babies against each other using the power of their cuteness! It's a fun app for both visitors and fighter creators alike.
 
-[Link to live client](https://www.google.com/)
+[Link to live client](http://squealing-flavor.surge.sh/)
 
 ![screenshot of app](screenshot-01.png 'Screenshot 1')
 ![screenshot of app](screenshot-02.png 'Screenshot 2')
@@ -34,7 +34,9 @@ A very fun app
 - [Github Link](https://github.com/jmccasusi/bfc_api/)
 
 ## Future Improvements
-- 
+- Search bar for babies
+- More detailed and fair "voting" mechanics
+- Ban user ability and other moderation tools for admin
 
 ## Team Members/Contributors
 - Ruby King
