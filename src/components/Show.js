@@ -95,20 +95,12 @@ class Show extends React.Component {
                   DELETE
                 </button>
               ) : null}
-              
-              <button 
-                className="btn btn-dark showButton" onClick={() => {
-                this.goToShowAllPage();
-              }}
-              >
-                Back</button>
               </div>
-            </div>
           ) : null}
 
           <button id="goBack" className="btn btn-dark showButton" onClick={() => {
               this.goToShowAllPage();
-              }}>Back</button>
+              }}>BACK</button>
         </div>
       </div>
     );
